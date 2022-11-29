@@ -1,0 +1,48 @@
+@import '../../styles/common/variables';
+@import '../../styles/common/placeholders';
+
+.primary {
+  @extend .button;
+
+  background-color: $G-color-main;
+  color: $G-color-white-extra;
+
+  &:hover {
+    background-color: $G-color-main-hover;
+  }
+
+  &:active {
+    background-color: $G-color-main;
+  }
+}
+
+.default {
+  @extend .button;
+
+  background-color: $G-color-white-extra;
+  color: $G-color-gray-extra;
+  border: 1px solid $G-color-border-default;
+
+  &:hover {
+    background-color: $G-color-white-hover;
+  }
+
+  &:active {
+    background-color: $G-color-white-extra;
+  }
+}
+
+.white {
+  @extend .button;
+
+  background-color: $G-color-white-extra;
+  color: $G-color-gray-extra;
+
+  &:hover {
+    background-color: $G-color-white-hover;
+  }
+
+  &:active {
+    background-color: $G-color-white-extra;
+  }
+}

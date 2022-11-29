@@ -1,0 +1,27 @@
+@charset "UTF-8";
+@import "_variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $G-font-family-base;
+  font-size: $G-font-size-h6;
+  background-color: $G-background-color-default;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: $G-font-size-h6;
+}

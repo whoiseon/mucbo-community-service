@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/.idea
+/fonts
 /.pnp
 .pnp.js
 
@@ -27,6 +29,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
