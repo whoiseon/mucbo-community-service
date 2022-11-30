@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+@keyframes ModalAnimation {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.root {
+  position: absolute;
+  top: 24px;
+  z-index: 9999;
+  animation: ModalAnimation 0.16s ease-in;
+
+  .wrapper {
+    background-color: $G-color-white-extra;
+    border-radius: 6px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        width: 120px;
+        height: auto;
+        margin: 0;
+
+        button {
+          width: 100%;
+          padding: 12px 20px;
+          text-align: left;
+          color: $G-color-black-semi;
+          background-color: $G-color-white-extra;
+          transition: background-color 0.16s ease-in;
+
+          &:hover {
+            background-color: $G-color-white-hover;
+          }
+
+          &:active {
+            background-color: $G-color-white-extra;
+          }
+        }
+      }
+    }
+  }
+}

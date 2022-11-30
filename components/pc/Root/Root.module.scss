@@ -1,0 +1,21 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.container {
+  display: flex;
+  width: 1280px;
+  padding-top: 20px;
+  margin: 0 auto;
+
+  .left {
+    min-width: 380px;
+    max-width: 380px;
+    align-self: flex-start;
+    margin-right: 20px;
+  }
+
+  .right {
+    width: 100%;
+  }
+}

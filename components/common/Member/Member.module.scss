@@ -1,0 +1,17 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.member {
+  display: flex;
+  float: left;
+  padding: 0;
+  margin: 0;
+
+  .nickname {
+    height: 24px;
+    line-height: 24px;
+    margin: 0 6px;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,80 @@
+@charset "UTF-8";
+@import '../../../styles/common/_variables.scss';
+
+/* Header */
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 76px;
+  background-color: $G-color-white-extra;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+
+  .inner {
+    display: flex;
+    align-items: center;
+    width: 1280px;
+    height: 100%;
+    margin: 0 auto;
+
+    .logo {
+      margin-right: 40px;
+      a {
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 10px;
+          font-size: $G-font-size-h3;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .headerMenu {
+      ul {
+        display: flex;
+        align-items: center;
+
+        li {
+          a {
+            padding: 8px 16px;
+            font-size: $G-font-size-h5;
+            font-weight: 500;
+            background-color: $G-color-white-extra;
+            border-radius: 6px;
+            color: $G-color-black-semi;
+            transition: background-color 0.16s ease-in;
+
+            &:hover {
+              background-color: $G-color-white-hover;
+            }
+
+            &:active {
+              background-color: $G-color-white-extra;
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+
+      button:nth-of-type(1) {
+        margin-right: 20px;
+      }
+
+      a:nth-of-type(1) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.mainWrapper {
+  width: 100%;
+  height: auto;
+}

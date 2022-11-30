@@ -2,9 +2,32 @@
 @import './variables';
 
 .button {
-  padding: 8px 16px;
+  padding: 9px 16px 8px;
   border-radius: 6px;
   transition: background-color 0.16s ease-in;
-  font-size: $G-font-size-h7;
+  font-size: $G-font-size-h6;
   font-weight: 700;
+}
+
+.white-box {
+  background-color: $G-color-white-extra;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.04);
+}
+
+.default-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: $G-background-color-default;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $G-color-gray-medium;
+  }
 }

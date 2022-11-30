@@ -1,0 +1,10 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  position: relative;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  line-height: 24px;
+}

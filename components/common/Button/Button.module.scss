@@ -1,5 +1,5 @@
-@import '../../styles/common/variables';
-@import '../../styles/common/placeholders';
+@import '../../../styles/common/variables';
+@import '../../../styles/common/placeholders';
 
 .primary {
   @extend .button;
@@ -37,6 +37,24 @@
 
   background-color: $G-color-white-extra;
   color: $G-color-gray-extra;
+
+  &:hover {
+    background-color: $G-color-white-hover;
+  }
+
+  &:active {
+    background-color: $G-color-white-extra;
+  }
+}
+
+.svgBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 6px;
+  background-color: $G-color-white-extra;
+  transition: background-color 0.16s ease-in;
 
   &:hover {
     background-color: $G-color-white-hover;
