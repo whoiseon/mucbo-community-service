@@ -1,0 +1,40 @@
+@charset "UTF-8";
+@import '../../../styles/common/variables';
+@import '../../../styles/common/placeholders';
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  .header {
+    @extend .white-box;
+
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .title {
+      display: flex;
+      align-items: center;
+
+      .titleLeft {
+        h1 {
+          font-size: $G-font-size-h5;
+          font-weight: 600;
+        }
+      }
+
+      .titleRight {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .content {
+    @extend .white-box;
+
+    width: 100%;
+    height: auto;
+  }
+}

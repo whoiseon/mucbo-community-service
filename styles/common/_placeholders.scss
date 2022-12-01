@@ -2,11 +2,17 @@
 @import './variables';
 
 .button {
+  display: flex;
+  align-items: center;
   padding: 9px 16px 8px;
   border-radius: 6px;
   transition: background-color 0.16s ease-in;
   font-size: $G-font-size-h6;
   font-weight: 700;
+
+  span {
+    margin-left: 6px;
+  }
 }
 
 .white-box {

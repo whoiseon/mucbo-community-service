@@ -7,7 +7,6 @@ import ChatList from "../ChatList";
 export default function ChatBox() {
   const [message, onChangeMessage] = useInput('');
 
-  console.log(message);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>

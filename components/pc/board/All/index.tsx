@@ -1,14 +1,15 @@
-import styles from './Root.module.scss';
-import ChatBox from '../ChatBox';
+import styles from "../../Root/Root.module.scss";
+import ChatBox from "../../ChatBox";
+import Community from "../../Community";
 
-export default function Index() {
+export default function BoardAll() {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <ChatBox />
       </div>
       <div className={styles.right}>
-        <p>Index</p>
+        <Community />
       </div>
     </div>
   );

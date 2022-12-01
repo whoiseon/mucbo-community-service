@@ -14,14 +14,14 @@ export const headerMenus = [
   },
   {
     name: '커뮤니티',
-    path: 'community/free'
+    path: '/community/free'
   },
   {
     name: '게임들',
-    path: 'games/sudden_attack'
+    path: '/games/sudden_attack'
   },
   {
     name: 'Q&A',
-    path: 'qa'
+    path: '/qa'
   }
 ];

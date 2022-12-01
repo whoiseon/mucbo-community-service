@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: $G-color-black-medium;
+
+  .left {
+    position: relative;
+    text-align: left;
+  }
+
+  thead {
+    th {
+      height: 60px;
+      color: $G-color-gray-light;
+      border-bottom: 1px solid $G-color-border-table;
+      font-weight: normal;
+    }
+  }
+
+  tbody {
+    .left {
+      text-align: left;
+      color: $G-color-black-medium;
+    }
+
+    tr:not(:first-of-type) {
+      border-top: 1px solid $G-color-border-table;
+    }
+
+    td {
+      height: 60px;
+      color: $G-color-gray-extra;
+      text-align: center;
+    }
+  }
+}
