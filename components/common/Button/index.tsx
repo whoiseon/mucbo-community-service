@@ -23,7 +23,6 @@ export default function Button({ path, children, type, onClick, afterImg }: Butt
       case "svg":
         return styles.svgBtn;
       default:
-        return styles.primary;
     }
   }, []);
 
@@ -34,7 +33,7 @@ export default function Button({ path, children, type, onClick, afterImg }: Butt
           {
             afterImg && <Image src={afterImg} alt="img" width={14} height={14} />
           }
-          <span>{ children }</span>
+          { afterImg ? <span>{ children }</span> : children}
         </a>
       </Link>
       )
@@ -47,7 +46,7 @@ export default function Button({ path, children, type, onClick, afterImg }: Butt
         {
           afterImg && <Image src={afterImg} alt="img" width={14} height={14} />
         }
-        <span>{ children }</span>
+        { afterImg ? <span>{ children }</span> : children}
       </button>
     )
 };

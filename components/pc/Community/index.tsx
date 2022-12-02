@@ -14,7 +14,7 @@ export default function Community() {
             <h1>전체글보기</h1>
           </div>
           {
-            router.pathname !== '/board/all' && (
+            router.pathname === '/board/all' && (
               <div className={styles.titleRight}>
                 <Button
                   path={`${router.pathname}/write`}
