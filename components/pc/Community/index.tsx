@@ -4,10 +4,15 @@ import Button from "../../common/Button"
 import {useRouter} from "next/router";
 import ListTable from "./ListTable";
 import Pagination from "./Pagination";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/reducers";
 
 export default function Community() {
+  const { value } = useSelector((state: RootState) => state.counter);
+
   const router = useRouter();
 
+  console.log(value);
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>

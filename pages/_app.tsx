@@ -5,12 +5,13 @@ import {GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import PCLayout from "../components/pc/Layout";
+import {wrapper} from "../store";
 
 interface IProps {
   isMobile: boolean,
 }
 
-export default function MyApp({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) {
+const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
   return (
     isMobile
       ? (
@@ -40,3 +41,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   }
 }
+
+export default wrapper.withRedux(MyApp);
