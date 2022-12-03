@@ -29,8 +29,8 @@
       color: $G-color-black-medium;
     }
 
-    tr:not(:first-of-type) {
-      border-top: 1px solid $G-color-border-table;
+    tr {
+      border-bottom: 1px solid $G-color-border-table;
     }
 
     td {

@@ -1,7 +1,9 @@
+import {useEffect, useState} from "react";
 import styles from "./Community.module.scss";
 import Button from "../../common/Button"
 import {useRouter} from "next/router";
 import ListTable from "./ListTable";
+import Pagination from "./Pagination";
 
 export default function Community() {
   const router = useRouter();
@@ -30,6 +32,7 @@ export default function Community() {
       </div>
       <div className={styles.content}>
         <ListTable />
+        <Pagination />
       </div>
     </div>
   );

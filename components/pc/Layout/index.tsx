@@ -2,6 +2,8 @@ import Image from "next/image";
 import styles from "./Layout.module.scss";
 import NavBar from "./NavBar";
 import Button from "../../common/Button";
+import {footerMap} from "../../../data/menus";
+import FooterMap from "../FooterMap";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -81,7 +83,13 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </div>
           <div className={styles.right}>
-            123
+            {
+              footerMap.map((map, idx) => {
+                return (
+                  <FooterMap key={map.title} data={map} />
+                )
+              })
+            }
           </div>
         </div>
       </footer>

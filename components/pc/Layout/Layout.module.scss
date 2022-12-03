@@ -167,7 +167,30 @@
     }
 
     .right {
+      display: flex;
 
+      div {
+        min-width: 170px;
+        height: auto;
+
+        ul {
+          color: $G-color-gray-medium;
+
+          li:nth-of-type(1) {
+            color: $G-color-black-semi;
+            font-weight: 600;
+            margin: 0 0 20px;
+          }
+
+          li {
+            margin-top: 10px;
+
+            a:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
   }
 }
