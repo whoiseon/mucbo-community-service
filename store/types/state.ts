@@ -6,7 +6,7 @@ export interface ActionProps {
 }
 
 export interface PostState {
-  posts: string[] | null,
+  posts: string[] | null | string,
   getPostsAllLoading: boolean,
   getPostsAllDone: boolean,
   getPostsAllError: string | null | SerializedError,

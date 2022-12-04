@@ -6,27 +6,21 @@ import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import PCLayout from "../components/pc/Layout";
 import {wrapper} from "../store";
-import {Provider} from "react-redux";
 
 interface IProps {
   isMobile: boolean,
 }
 
 const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
-  const { store, props } = wrapper.useWrappedStore(pageProps);
   return (
     isMobile
       ? (
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
+        <Component {...pageProps} />
       )
       : (
-        <Provider store={store}>
-          <PCLayout>
-            <Component {...pageProps} />
-          </PCLayout>
-        </Provider>
+        <PCLayout>
+          <Component {...pageProps} />
+        </PCLayout>
       )
   )
 };
@@ -48,4 +42,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

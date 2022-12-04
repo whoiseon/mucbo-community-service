@@ -1,8 +1,7 @@
 import Head from "next/head";
-import {GetServerSideProps, NextPage} from "next";
+import {NextPage, GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
-import Home from "../index";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoardAll from "../../components/pc/board/All";
@@ -33,7 +32,7 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(store => async ({req, res}) => {
+export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res}) => {
   let mobile;
 
   if (req) {
@@ -44,6 +43,10 @@ export const getServerSideProps = wrapper.getServerSideProps(store => async ({re
   }
 
   await store.dispatch(getPostsAll());
+
+  // const response = await fetch('https://cheatdot.com/api/v1/board/all.php');
+  // const data = await response.json();
+  // console.log(data);
 
   return {
     props: {

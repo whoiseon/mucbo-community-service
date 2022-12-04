@@ -12,6 +12,12 @@
   .left {
     position: relative;
     text-align: left;
+
+    button {
+      span {
+        font-weight: 400;
+      }
+    }
   }
 
   thead {
@@ -35,7 +41,7 @@
 
     td {
       height: 60px;
-      color: $G-color-gray-extra;
+      color: $G-color-gray-medium;
       text-align: center;
     }
   }

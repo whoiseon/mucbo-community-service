@@ -1,6 +1,13 @@
 import styles from "./ListTable.module.scss";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../store/reducers";
+import Member from "../../../common/Member";
 
 export default function ListTable() {
+  const { posts } = useSelector((state: RootState) => state.post);
+
+  console.log(posts);
+
   return (
     <table className={styles.table}>
       <colgroup>
@@ -12,7 +19,7 @@ export default function ListTable() {
       </colgroup>
       <thead>
       <tr>
-        <th>#</th>
+        <th> </th>
         <th>제목</th>
         <th className={styles.left}>작성자</th>
         <th>작성일</th>
@@ -20,20 +27,27 @@ export default function ListTable() {
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>메이플</td>
-        <td className={styles.left}>362 있는사람?</td>
-        <td className={styles.left}>123</td>
-        <td>123</td>
-        <td>123</td>
-      </tr>
-      <tr>
-        <td>메이플</td>
-        <td className={styles.left}>362 있는사람?</td>
-        <td className={styles.left}>123</td>
-        <td>123</td>
-        <td>123</td>
-      </tr>
+      {
+        posts?.list.map((post: any, idx: number) => {
+          const tag = post.bo_subject === '메이플스토리'
+            ? post.bo_subject.substring(0, 3)
+            : post.bo_subject === '배틀그라운드'
+              ? '배그'
+              : post.bo_subject
+
+          return (
+            <tr key={post.wr_id}>
+              <td>{tag}</td>
+              <td className={styles.left}>{post.subject}</td>
+              <td className={styles.left}>
+                <Member nickname={post.wr_name} level={post.mb_level} width={22} height={22} />
+              </td>
+              <td>{post.datetime.slice(5)}</td>
+              <td>{post.wr_hit}</td>
+            </tr>
+          )
+        })
+      }
       </tbody>
     </table>
   );
