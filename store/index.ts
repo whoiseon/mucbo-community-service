@@ -1,19 +1,29 @@
-import { createStore, applyMiddleware, Middleware, StoreEnhancer } from "redux";
-import rootReducer from "./reducers";
-import { MakeStore, createWrapper } from "next-redux-wrapper";
+import {createWrapper} from "next-redux-wrapper";
+import logger from "redux-logger";
+import {
+  Action,
+  AnyAction,
+  configureStore,
+  Reducer,
+  ThunkAction
+} from "@reduxjs/toolkit";
+import rootReducer, {RootState} from "./reducers";
+import {ReducerStates} from "./types/state";
 
-const bindMiddleware = (middleware: Middleware[]): StoreEnhancer => {
-  if (process.env.NODE_ENV !== 'production') {
-    const { composeWithDevTools } = require('redux-devtools-extension');
-    return composeWithDevTools(applyMiddleware(...middleware));
-  }
+const isProduction = process.env.NODE_ENV === "production"
 
-  return applyMiddleware(...middleware);
-}
+const makeStore = () => {
+  const store = configureStore({
+    reducer: rootReducer as Reducer<ReducerStates, AnyAction>,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    devTools: !isProduction
+  });
 
-const makeStore: MakeStore<{}> = () => {
-  const store = createStore(rootReducer, {}, bindMiddleware([]))
   return store;
 }
 
-export const wrapper = createWrapper<{}>(makeStore, { debug: true });
+export type AppStore = ReturnType<typeof makeStore>; // store type
+export type AppDispatch = AppStore['dispatch'];
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action>
+
+export const wrapper = createWrapper<AppStore>(makeStore);

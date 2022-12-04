@@ -6,6 +6,8 @@ import Home from "../index";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoardAll from "../../components/pc/board/All";
+import {wrapper} from "../../store";
+import {getPostsAll} from "../../store/slices/postSlice";
 
 interface IProps {
   isMobile: boolean,
@@ -31,21 +33,23 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps = wrapper.getServerSideProps(store => async ({req, res}) => {
   let mobile;
 
-  if (context.req) {
-    const md = new MobileDetect(context.req.headers['user-agent'] as string);
+  if (req) {
+    const md = new MobileDetect(req.headers['user-agent'] as string);
     mobile = !!md.mobile();
   } else {
     mobile = isMobile;
   }
 
+  await store.dispatch(getPostsAll());
+
   return {
     props: {
       isMobile: mobile,
     },
-  }
-}
+  };
+});
 
 export default BoardAllPage;
