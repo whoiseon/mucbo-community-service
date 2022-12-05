@@ -1,4 +1,5 @@
 import {SerializedError} from "@reduxjs/toolkit";
+import {BoardType} from "../../types/board";
 
 export interface ActionProps {
   type: string,
@@ -6,7 +7,7 @@ export interface ActionProps {
 }
 
 export interface PostState {
-  posts: string[] | null | string,
+  posts: BoardType | null,
   getPostsAllLoading: boolean,
   getPostsAllDone: boolean,
   getPostsAllError: string | null | SerializedError,

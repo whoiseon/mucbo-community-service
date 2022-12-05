@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
-import iconv from "iconv-lite";
 
 const initialState: PostState = {
   posts: null,
@@ -10,12 +9,21 @@ const initialState: PostState = {
   getPostsAllError: null,
 }
 
-export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async () => {
-  try {
-    const response = await fetch('https://cheatdot.com/api/v1/board/all.php');
-    const data = await response.json();
+export type GetPostsAllPrams = {
+  page: number
+}
 
-    return data.message.result;
+export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page = 1 }: GetPostsAllPrams) => {
+  try {
+    const response = await axios.get('https://cheatdot.com/api/v1/board/all.php', {
+      params: {
+        page,
+      }
+    });
+
+    console.log(page);
+
+    return response.data;
   } catch (error) {
     throw error;
   }

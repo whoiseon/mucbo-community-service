@@ -7,4 +7,35 @@
   justify-content: center;
   width: 100%;
   padding: 40px 0 60px;
+
+  .pagingBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    font-size: $G-font-size-h5;
+    font-weight: 400;
+  }
+
+  .currentPage {
+    @extend .pagingBtn;
+
+    color: $G-color-white-extra;
+    background-color: $G-color-main;
+  }
+
+  a {
+    @extend .pagingBtn;
+
+    color: $G-color-gray-medium;
+    background-color: $G-color-white-extra;
+    transition: all 0.16s ease-in;
+
+    &:hover {
+      background-color: $G-color-white-hover;
+      color: $G-color-black-medium;
+    }
+  }
 }

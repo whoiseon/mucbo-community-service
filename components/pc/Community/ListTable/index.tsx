@@ -6,8 +6,6 @@ import Member from "../../../common/Member";
 export default function ListTable() {
   const { posts } = useSelector((state: RootState) => state.post);
 
-  console.log(posts);
-
   return (
     <table className={styles.table}>
       <colgroup>
@@ -28,7 +26,7 @@ export default function ListTable() {
       </thead>
       <tbody>
       {
-        posts?.list.map((post: any, idx: number) => {
+        posts?.message.result.list.map((post: any, idx: number) => {
           const tag = post.bo_subject === '메이플스토리'
             ? post.bo_subject.substring(0, 3)
             : post.bo_subject === '배틀그라운드'
@@ -42,7 +40,7 @@ export default function ListTable() {
               <td className={styles.left}>
                 <Member nickname={post.wr_name} level={post.mb_level} width={22} height={22} />
               </td>
-              <td>{post.datetime.slice(5)}</td>
+              <td>{post.datetime2}</td>
               <td>{post.wr_hit}</td>
             </tr>
           )

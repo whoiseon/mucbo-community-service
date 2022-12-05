@@ -7,15 +7,20 @@ import MobileRoot from "../../components/mobile/Root";
 import PCBoardAll from "../../components/pc/board/All";
 import {wrapper} from "../../store";
 import {getPostsAll} from "../../store/slices/postSlice";
+import {useRouter} from "next/router";
 
 interface IProps {
   isMobile: boolean,
 }
 
 const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
+  const router = useRouter();
+
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoardAll />
   }, []);
+
+  console.log(router.query.page);
 
   return (
     <>
@@ -32,7 +37,7 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
   );
 };
 
-export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res}) => {
+export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res, query}) => {
   let mobile;
 
   if (req) {
@@ -42,11 +47,9 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
-  await store.dispatch(getPostsAll());
-
-  // const response = await fetch('https://cheatdot.com/api/v1/board/all.php');
-  // const data = await response.json();
-  // console.log(data);
+  await store.dispatch(getPostsAll({
+    page: Number(query.page),
+  }));
 
   return {
     props: {
