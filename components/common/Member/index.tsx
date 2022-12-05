@@ -8,9 +8,10 @@ interface MemberProps {
   level: string,
   width: number,
   height: number,
+  modalTop: number
 }
 
-export default function Member({ nickname, level, width, height }: MemberProps) {
+export default function Member({ nickname, level, width, height, modalTop }: MemberProps) {
   const [openUserModal, setOpenUserModal] = useState<boolean>(false);
 
   const onClickOpenModal = useCallback(() => {
@@ -31,7 +32,7 @@ export default function Member({ nickname, level, width, height }: MemberProps) 
         />
         <span className={styles.nickname}>{ nickname }</span>
       </button>
-      {openUserModal && <Modal setOpenUserModal={setOpenUserModal}/> }
+      {openUserModal && <Modal setOpenUserModal={setOpenUserModal} modalTop={modalTop} /> }
     </>
   )
 }

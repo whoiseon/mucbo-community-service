@@ -15,14 +15,13 @@ export type GetPostsAllPrams = {
 
 export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page = 1 }: GetPostsAllPrams) => {
   try {
-    const response = await axios.get('https://cheatdot.com/api/v1/board/all.php', {
+    const response = await axios.get('https://j.cheatdot.com/api/v1/board/all.php', {
       params: {
         page,
       }
     });
 
     console.log(page);
-
     return response.data;
   } catch (error) {
     throw error;

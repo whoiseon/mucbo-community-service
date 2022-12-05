@@ -9,17 +9,6 @@
   border-spacing: 0;
   color: $G-color-black-medium;
 
-  .left {
-    position: relative;
-    text-align: left;
-
-    button {
-      span {
-        font-weight: 400;
-      }
-    }
-  }
-
   thead {
     th {
       height: 60px;
@@ -31,8 +20,15 @@
 
   tbody {
     .left {
+      position: relative;
       text-align: left;
       color: $G-color-black-medium;
+
+      button {
+        span {
+          font-weight: 400;
+        }
+      }
     }
 
     tr {
@@ -43,6 +39,39 @@
       height: 60px;
       color: $G-color-gray-medium;
       text-align: center;
+
+      .subjectContent {
+        display: flex;
+        align-items: center;
+
+        a {
+          display: inline-block;
+          max-width: 400px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .newSubjectIcon {
+          margin-left: 6px;
+          padding-top: 2px;
+
+          img {
+            width: 12px;
+            height: 14px;
+          }
+        }
+
+        .subjectCommentCount {
+          margin-left: 6px;
+          color: $G-color-main;
+          padding-bottom: 2px;
+        }
+      }
     }
   }
 }

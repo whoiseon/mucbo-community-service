@@ -14,6 +14,7 @@ export default function ChatItem({ chat }: ChatItemProps) {
         level={chat.user.level}
         width={24}
         height={24}
+        modalTop={24}
       />
       <span>{ chat.body.message }</span>
     </div>

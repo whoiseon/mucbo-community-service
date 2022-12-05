@@ -3,9 +3,10 @@ import styles from "./Modal.module.scss";
 
 interface ModalProps {
   setOpenUserModal: Dispatch<SetStateAction<boolean>>
+  modalTop: number
 }
 
-export default function Modal({ setOpenUserModal }: ModalProps) {
+export default function Modal({ setOpenUserModal, modalTop }: ModalProps) {
   const ModalRef = useRef<HTMLDivElement>(null);
 
   const onClickCloseModal = useCallback(() => {
@@ -30,6 +31,7 @@ export default function Modal({ setOpenUserModal }: ModalProps) {
   return (
     <div
       className={styles.root}
+      style={{ top: `${modalTop}px` }}
       onClick={onClickCloseModal}
       ref={ModalRef}
     >

@@ -2,6 +2,7 @@ import styles from "./ListTable.module.scss";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store/reducers";
 import Member from "../../../common/Member";
+import Link from "next/link";
 
 export default function ListTable() {
   const { posts } = useSelector((state: RootState) => state.post);
@@ -31,14 +32,36 @@ export default function ListTable() {
             ? post.bo_subject.substring(0, 3)
             : post.bo_subject === '배틀그라운드'
               ? '배그'
-              : post.bo_subject
+              : post.bo_subject === '피해사례 공유'
+                ? '피해사례'
+                : post.bo_subject
 
           return (
             <tr key={post.wr_id}>
               <td>{tag}</td>
-              <td className={styles.left}>{post.subject}</td>
               <td className={styles.left}>
-                <Member nickname={post.wr_name} level={post.mb_level} width={22} height={22} />
+                <div className={styles.subjectContent}>
+                  <Link href={`/${post.gr_id}/${post.bo_table}/${post.wr_id}`}>
+                    {post.subject}
+                  </Link>
+                  {
+                    post.is_new && (
+                      <span className={styles.newSubjectIcon}>
+                        <img src="/image/icon/board-new-content-icon.svg" alt="board-new-content-icon" />
+                      </span>
+                    )
+                  }
+                  {
+                    post.wr_comment > 0 && (
+                      <span className={styles.subjectCommentCount}>
+                        +{ post.wr_comment }
+                      </span>
+                    )
+                  }
+                </div>
+              </td>
+              <td className={styles.left}>
+                <Member nickname={post.wr_name} level={post.mb_level} width={22} height={22} modalTop={44} />
               </td>
               <td>{post.datetime2}</td>
               <td>{post.wr_hit}</td>
