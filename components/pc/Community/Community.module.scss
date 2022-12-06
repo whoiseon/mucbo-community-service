@@ -27,6 +27,68 @@
 
       .titleRight {
         margin-left: auto;
+
+        .searchBox {
+          position: relative;
+
+          select {
+            padding: 10px 16px;
+            border-radius: 6px 0 0 6px;
+            border: 1px solid $G-background-color-default;
+            color: $G-color-gray-extra;
+          }
+
+          input {
+            width: 260px;
+            background-color: $G-background-color-default;
+            border: 1px solid $G-background-color-default;
+            padding: 10px 46px 10px 16px;
+          }
+
+          img {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            width: 14px;
+            height: 14px;
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    .headerMenus {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+
+      .menuBtn {
+        @extend .button;
+
+        background-color: $G-color-white-extra;
+        color: $G-color-gray-extra;
+        font-weight: 500;
+
+        &:hover {
+          background-color: $G-color-white-hover;
+        }
+
+        &:active {
+          background-color: $G-color-white-extra;
+        }
+      }
+
+      .menuActive {
+        background-color: $G-color-black-semi;
+        color: $G-color-white-extra;
+
+        &:hover {
+          background-color: $G-color-black-medium;
+        }
+
+        &:active {
+          background-color: $G-color-black-semi;
+        }
       }
     }
   }

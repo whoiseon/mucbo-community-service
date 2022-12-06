@@ -38,3 +38,17 @@ button {
   cursor: pointer;
   font-size: $G-font-size-h6;
 }
+
+input, select {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+input::placeholder {
+  color: $G-color-gray-medium
+}

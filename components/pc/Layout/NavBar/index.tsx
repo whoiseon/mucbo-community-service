@@ -7,7 +7,7 @@ export default function NavBar() {
       {
         headerMenus.map((menu, idx) => {
           return (
-            <NavItem key={menu.name} name={menu.name} path={menu.path} />
+            <NavItem key={menu.name} name={menu.name} path={menu.path} table={menu.table} />
           );
         })
       }

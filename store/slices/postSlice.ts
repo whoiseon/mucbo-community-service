@@ -28,6 +28,26 @@ export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page 
   }
 })
 
+export type GetPostsByTable = {
+  page: number,
+  table: string | string[] | undefined
+}
+
+export const getPostsByTable = createAsyncThunk('post/GET_POSTS_ALL', async ({ page = 1, table }: GetPostsByTable) => {
+  try {
+    const response = await axios.get('https://j.cheatdot.com/api/v1/board/board.php', {
+      params: {
+        page,
+        bo_table: table,
+      }
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+})
+
 export const postSlice = createSlice({
   name: 'post',
   initialState,

@@ -1,27 +1,130 @@
 export declare type HeaderMenuType = {
   name: string,
+  table: string,
   path: string
+  subTable?: {
+    name: string,
+    table: string,
+    path: string
+  }[],
 };
 
 export const headerMenus = [
   {
     name: '공지사항',
+    table: 'customer',
     path: '/customer/notice',
+    subTable: [
+      {
+        name: '공지사항',
+        table: 'customer',
+        path: '/customer/notice'
+      },
+      {
+        name: '업데이트',
+        table: 'customer',
+        path: '/customer/update'
+      }
+    ]
   },
   {
     name: '전체글보기',
+    table: 'all',
     path: '/board/all'
+
   },
   {
     name: '커뮤니티',
-    path: '/community/free'
+    table: 'community',
+    path: '/community/free',
+    subTable: [
+      {
+        name: '자유',
+        table: 'community',
+        path: '/community/free'
+      },
+      {
+        name: '유머',
+        table: 'community',
+        path: '/community/humor'
+      },
+      {
+        name: '포토',
+        table: 'community',
+        path: '/community/photo'
+      },
+      {
+        name: '피해사례',
+        table: 'community',
+        path: '/community/crime'
+      },
+      {
+        name: '신고',
+        table: 'community',
+        path: '/community/report'
+      },
+      {
+        name: '가입인사',
+        table: 'community',
+        path: '/community/hello'
+      }
+    ]
   },
   {
     name: '게임들',
-    path: '/games/sudden_attack'
+    table: 'games',
+    path: '/games/sudden_attack',
+    subTable: [
+      {
+        name: '서든어택',
+        table: 'games',
+        path: '/games/sudden_attack'
+      },
+      {
+        name: '오버워치',
+        table: 'games',
+        path: '/games/over_watch'
+      },
+      {
+        name: '배그',
+        table: 'games',
+        path: '/games/battle_ground'
+      },
+      {
+        name: '발로란트',
+        table: 'games',
+        path: '/games/valorant'
+      },
+      {
+        name: '던전앤파이터',
+        table: 'games',
+        path: '/games/df'
+      },
+      {
+        name: '리그오브레전드',
+        table: 'games',
+        path: '/games/lol'
+      },
+      {
+        name: '메이플스토리',
+        table: 'games',
+        path: '/games/maple_story'
+      },
+      {
+        name: '기타게임',
+        table: 'games',
+        path: '/games/etc_game'
+      },
+      {
+        name: '게임요청',
+        table: 'games',
+        path: '/games/request_game'
+      },
+    ]
   },
   {
     name: 'Q&A',
+    table: 'qa',
     path: '/qa'
   }
 ];

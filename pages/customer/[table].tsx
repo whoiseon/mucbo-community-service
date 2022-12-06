@@ -6,26 +6,27 @@ import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoard from "../../components/pc/Board";
 import {wrapper} from "../../store";
-import {getPostsAll} from "../../store/slices/postSlice";
 import {useRouter} from "next/router";
+import {getPostsByTable} from "../../store/slices/postSlice";
+import axios from "axios";
 
 interface IProps {
   isMobile: boolean,
 }
 
-const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
+const CustomerPage: NextPage<IProps> = ({ isMobile }) => {
   const router = useRouter();
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
   }, []);
 
-  console.log(router.query.page);
+  console.log(router.query.table);
 
   return (
     <>
       <Head>
-        <title>먹보닷컴 - 전체글보기</title>
+        <title>먹보닷컴 - </title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
@@ -47,8 +48,9 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
-  await store.dispatch(getPostsAll({
+  await store.dispatch(getPostsByTable({
     page: Number(query.page),
+    table: query.table
   }));
 
   return {
@@ -58,4 +60,4 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   };
 });
 
-export default BoardAllPage;
+export default CustomerPage;

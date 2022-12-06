@@ -3,10 +3,11 @@ import styles from "../Layout.module.scss";
 import type { HeaderMenuType } from "../../../../data/menus";
 import {useRouter} from "next/router";
 
-export default function NavItem({ name, path }: HeaderMenuType) {
+export default function NavItem({ name, path, table }: HeaderMenuType) {
   const router = useRouter();
 
-  const isActive = router.pathname === path ? styles.active: '';
+  const isActive = router.asPath.includes(table) ? styles.active: '';
+
   return (
     <li>
       <Link href={path}>

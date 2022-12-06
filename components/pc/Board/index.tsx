@@ -1,6 +1,6 @@
-import styles from "../../Root/Root.module.scss";
-import ChatBox from "../../ChatBox";
-import Community from "../../Community";
+import styles from "../Root/Root.module.scss";
+import ChatBox from "../ChatBox";
+import Community from "../Community";
 
 export default function BoardAll() {
   return (
