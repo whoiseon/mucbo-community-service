@@ -40,6 +40,11 @@
       color: $G-color-gray-medium;
       text-align: center;
 
+      .isNotice {
+        color: $G-color-main;
+        font-weight: 600;
+      }
+
       .subjectContent {
         display: flex;
         align-items: center;

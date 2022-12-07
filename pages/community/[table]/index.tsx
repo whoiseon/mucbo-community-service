@@ -3,18 +3,18 @@ import {NextPage, GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {useCallback} from "react";
-import MobileRoot from "../../components/mobile/Root";
-import PCBoard from "../../components/pc/Board";
-import {wrapper} from "../../store";
-import {getPostsAll} from "../../store/slices/postSlice";
+import MobileRoot from "../../../components/mobile/Root";
+import PCBoard from "../../../components/pc/Board";
+import {wrapper} from "../../../store";
 import {useRouter} from "next/router";
+import {getPostsByTable} from "../../../store/slices/postSlice";
 
 interface IProps {
   isMobile: boolean,
   title: string
 }
 
-const BoardAllPage: NextPage<IProps> = ({ isMobile, title }) => {
+const CommunityPage: NextPage<IProps> = ({ isMobile, title }) => {
   const router = useRouter();
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
@@ -24,7 +24,7 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile, title }) => {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{ title }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
@@ -46,8 +46,9 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
-  await store.dispatch(getPostsAll({
+  await store.dispatch(getPostsByTable({
     page: Number(query.page),
+    table: query.table
   }));
 
   const getState = store.getState();
@@ -67,4 +68,4 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   };
 });
 
-export default BoardAllPage;
+export default CommunityPage;

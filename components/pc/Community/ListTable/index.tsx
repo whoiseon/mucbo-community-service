@@ -40,7 +40,7 @@ export default function ListTable() {
 
           return (
             <tr key={post.wr_id}>
-              <td>{ tag || post.num }</td>
+              <td>{ post.is_notice ? <span className={styles.isNotice}>공지</span> : tag || post.num }</td>
               <td className={styles.left}>
                 <div className={styles.subjectContent}>
                   {

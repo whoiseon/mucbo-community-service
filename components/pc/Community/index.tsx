@@ -16,11 +16,12 @@ export default function Community() {
 
   const [search, onChangeSearch] = useInput('');
   const [page, setPage] = useState<number>(Number(router.query.page) || 1);
-  const [title, setTitle] = useState<string>('');
 
   const isTable = router.asPath.split('/');
   const subMenus = headerMenus.find((v) => v.table === isTable[1])
   const totalPage = posts?.message.result.total_count && Math.ceil(posts?.message.result.total_count / 20);
+
+  const asPath = router.asPath.split('?')[0]
 
   const handleTitleSlice = useCallback(() => {
     const title = posts?.message.result.title
@@ -40,8 +41,6 @@ export default function Community() {
       setPage(1);
     }
   }, [router.query.page])
-
-  console.log(posts?.message.result.title.split(' '));
 
   return (
     <div className={styles.wrapper}>
@@ -83,7 +82,7 @@ export default function Community() {
               <div className={styles.headerMenus}>
                 {
                   subMenus?.subTable.map((table, i) => {
-                    const isActive = router.asPath === table.path ? `${styles.menuBtn} ${styles.menuActive}` : styles.menuBtn
+                    const isActive = asPath === table.path ? `${styles.menuBtn} ${styles.menuActive}` : styles.menuBtn
 
                     return (
                       <Link key={table.name} href={table.path}>

@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
+import {GetPostsAllPrams, GetPostsByTable} from "../types/thunk";
 
 const initialState: PostState = {
   posts: null,
@@ -9,33 +10,23 @@ const initialState: PostState = {
   getPostsAllError: null,
 }
 
-export type GetPostsAllPrams = {
-  page: number
-}
-
 export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page = 1 }: GetPostsAllPrams) => {
   try {
-    const response = await axios.get('https://j.cheatdot.com/api/v1/board/all.php', {
+    const response = await axios.get('https://cheatdot.com/api/v1/board/all.php', {
       params: {
         page,
       }
     });
 
-    console.log(page);
     return response.data;
   } catch (error) {
     throw error;
   }
 })
 
-export type GetPostsByTable = {
-  page: number,
-  table: string | string[] | undefined
-}
-
 export const getPostsByTable = createAsyncThunk('post/GET_POSTS_ALL', async ({ page = 1, table }: GetPostsByTable) => {
   try {
-    const response = await axios.get('https://j.cheatdot.com/api/v1/board/board.php', {
+    const response = await axios.get('https://cheatdot.com/api/v1/board/board.php', {
       params: {
         page,
         bo_table: table,
