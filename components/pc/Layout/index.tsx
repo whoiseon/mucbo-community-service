@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import Button from "../../common/Button";
 import {footerMap} from "../../../data/menus";
 import FooterMap from "../FooterMap";
+import Link from "next/link";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -15,17 +16,19 @@ export default function Layout({ children }: LayoutProps) {
       <header className={styles.header}>
         <div className={styles.inner}>
           <div className={styles.logo}>
-            <a href="/">
-              <Image
-                src="/image/logo/logo.svg"
-                alt="logo"
-                width={32}
-                height={32}
-              />
-              <span>
-                먹보닷컴
-              </span>
-            </a>
+            <Link href="/">
+              <a>
+                <Image
+                  src="/image/logo/logo.svg"
+                  alt="logo"
+                  width={32}
+                  height={32}
+                />
+                <span>
+                  먹보닷컴
+                </span>
+              </a>
+            </Link>
           </div>
           <div className={styles.headerMenu}>
             <NavBar />

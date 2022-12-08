@@ -27,6 +27,7 @@ export default function Member({ nickname, level, width, height, modalTop }: Mem
       >
         <Image
           src={`/image/level/${level}.svg`}
+          alt="level image"
           width={width}
           height={height}
         />

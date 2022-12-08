@@ -11,7 +11,7 @@ export default function Modal({ setOpenUserModal, modalTop }: ModalProps) {
 
   const onClickCloseModal = useCallback(() => {
     setOpenUserModal(false);
-  }, []);
+  }, [setOpenUserModal]);
 
   useEffect(() => {
     const handler = (e: any) => {

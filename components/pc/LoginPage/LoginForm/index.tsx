@@ -56,7 +56,9 @@ export default function LoginForm() {
       <div className={styles.signUp}>
         <span>아직 회원이 아니신가요?</span>
         <Link href="/signup">
-          회원가입
+          <a>
+            회원가입
+          </a>
         </Link>
       </div>
     </div>
