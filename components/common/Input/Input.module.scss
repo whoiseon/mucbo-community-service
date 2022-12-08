@@ -5,3 +5,10 @@
 .defaultInput {
   @extend .default-input;
 }
+
+.borderInput {
+  @extend .default-input;
+
+  background-color: $G-color-white-extra;
+  border: 1px solid $G-color-border-default;
+}

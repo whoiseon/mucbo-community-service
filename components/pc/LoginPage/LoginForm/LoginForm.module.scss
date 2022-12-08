@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@import '../../../../styles/common/variables';
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  .loginLineBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+    opacity: 0.6;
+
+    .line {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 8px;
+      background-color: $G-color-gray-medium;
+    }
+
+    .lineText {
+      padding: 0 8px;
+      background-color: white;
+      color: $G-color-gray-medium;
+      z-index: 999;
+    }
+  }
+
+  .inputWrapper {
+    margin-bottom: 20px;
+
+    p {
+      margin-bottom: 10px;
+      color: $G-color-black-semi;
+    }
+
+    input:focus {
+      border: 1px solid $G-color-main;
+      box-shadow: $G-box-shadow-base;
+    }
+  }
+
+  .forgot {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: right;
+
+    a {
+      color: $G-color-main;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .buttonWrapper {
+    button {
+      margin-bottom: 20px;
+    }
+  }
+
+  .signUp {
+    display: flex;
+    justify-content: center;
+    color: $G-color-black-semi;
+
+    span {
+      margin-right: 6px;
+    }
+
+    a {
+      color: $G-color-main;
+      text-decoration: underline;
+
+      &:hover {
+        color: $G-color-main-hover;
+      }
+    }
+  }
+}

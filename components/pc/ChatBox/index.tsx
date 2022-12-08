@@ -20,6 +20,8 @@ export default function ChatBox() {
         <div className={styles.sendForm}>
           <Input
             placeholder="로그인 후 이용 가능합니다."
+            type="text"
+            style="default"
             readOnly={true}
             value={message}
             onChange={onChangeMessage}

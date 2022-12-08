@@ -16,6 +16,8 @@ export default function Button({ path, children, type, onClick, afterImg }: Butt
     switch (type) {
       case "primary":
         return styles.primary;
+      case "primary-100":
+        return styles.primary100;
       case "default":
         return styles.default;
       case "white":
