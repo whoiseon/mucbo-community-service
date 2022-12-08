@@ -6,10 +6,6 @@
 /.pnp
 .pnp.js
 
-# public
-/public/fonts
-/public/image/level
-
 # testing
 /coverage
 
