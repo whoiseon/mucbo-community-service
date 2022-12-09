@@ -55,6 +55,24 @@
     }
   }
 
+  .agree {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    input {
+      width: 18px;
+      height: 18px;
+      border: 1px solid $G-color-border-default;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    span {
+      color: $G-color-black-semi;
+    }
+  }
+
   .buttonWrapper {
     button {
       margin-bottom: 20px;

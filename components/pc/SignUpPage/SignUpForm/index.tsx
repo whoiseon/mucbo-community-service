@@ -1,20 +1,20 @@
-import styles from "./LoginForm.module.scss";
+import styles from "../../LoginPage/LoginForm/LoginForm.module.scss";
 import Input from "../../../common/Input";
 import useInput from "../../../../hooks/useInput";
 import Button from "../../../common/Button";
 import Link from "next/link";
-import {useEffect, useRef} from "react";
 
-export default function LoginForm() {
+export default function SignUpForm() {
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
+  const [passwordCheck, onChangePasswordCheck] = useInput('');
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.loginLineBox}>
         <div className={styles.line} />
         <div className={styles.lineText}>
-          <span>먹보닷컴 아이디로 로그인</span>
+          <span>회원가입에 필요한 정보를 입력해주세요</span>
         </div>
       </div>
       <div className={styles.inputWrapper}>
@@ -35,21 +35,29 @@ export default function LoginForm() {
           onChange={onChangePassword}
         />
       </div>
-      <div className={styles.forgot}>
-        <Link href="/forgot">
-          계정찾기
-        </Link>
+      <div className={styles.inputWrapper}>
+        <p>비밀번호 확인</p>
+        <Input
+          type="password"
+          style="border"
+          value={passwordCheck}
+          onChange={onChangePasswordCheck}
+        />
+      </div>
+      <div className={styles.agree}>
+        <input type="checkbox" />
+        <span>개인정보수집 및 약관에 동의하시곘습니까?</span>
       </div>
       <div className={styles.buttonWrapper}>
         <Button type="primary-100">
-          로그인
+          회원가입
         </Button>
       </div>
       <div className={styles.signUp}>
-        <span>아직 회원이 아니신가요?</span>
-        <Link href="/signup">
+        <span>이미 회원인신가요?</span>
+        <Link href="/login">
           <a>
-            회원가입
+            로그인
           </a>
         </Link>
       </div>

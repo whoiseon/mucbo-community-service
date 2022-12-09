@@ -8,6 +8,7 @@ import {useCallback, useEffect, useState} from "react";
 import useInput from "../../../hooks/useInput";
 import { headerMenus } from "../../../data/menus";
 import Link from "next/link";
+import QaTable from "./QaTable";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
@@ -98,15 +99,25 @@ export default function Community() {
             : null
         }
       </div>
-      <div className={styles.content}>
-        <ListTable />
-        <Pagination
-          totalPage={totalPage}
-          limit={10}
-          page={page}
-          setPage={setPage}
-        />
-      </div>
+      {
+        router.pathname !== '/qa'
+          ? (
+            <div className={styles.content}>
+              <ListTable />
+              <Pagination
+                totalPage={totalPage}
+                limit={10}
+                page={page}
+                setPage={setPage}
+              />
+            </div>
+          )
+          : (
+            <div className={styles.qaContent}>
+              <QaTable />
+            </div>
+          )
+      }
     </div>
   );
 };
