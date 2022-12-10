@@ -3,7 +3,6 @@ import Input from "../../../common/Input";
 import useInput from "../../../../hooks/useInput";
 import Button from "../../../common/Button";
 import Link from "next/link";
-import {useEffect, useRef} from "react";
 
 export default function LoginForm() {
   const [id, onChangeId] = useInput('');
