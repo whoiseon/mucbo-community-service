@@ -6,7 +6,6 @@ import {useCallback} from "react";
 import MobileRoot from "../../../components/mobile/Root";
 import PCBoard from "../../../components/pc/Board";
 import {wrapper} from "../../../store";
-import {useRouter} from "next/router";
 import {getPostsByTable} from "../../../store/slices/postSlice";
 
 interface IProps {
@@ -15,8 +14,6 @@ interface IProps {
 }
 
 const CustomerPage: NextPage<IProps> = ({ isMobile, title }) => {
-  const router = useRouter();
-
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
   }, []);

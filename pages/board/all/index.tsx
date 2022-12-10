@@ -3,10 +3,10 @@ import {NextPage, GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {useCallback} from "react";
-import MobileRoot from "../../components/mobile/Root";
-import PCBoard from "../../components/pc/Board";
-import {wrapper} from "../../store";
-import {getPostsAll} from "../../store/slices/postSlice";
+import MobileRoot from "../../../components/mobile/Root";
+import PCBoard from "../../../components/pc/Board";
+import {wrapper} from "../../../store";
+import {getPostsAll} from "../../../store/slices/postSlice";
 import {useRouter} from "next/router";
 
 interface IProps {
