@@ -45,17 +45,10 @@
         font-weight: 600;
       }
 
-      .newIcon {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 30px;
-        height: 16px;
-        font-size: 10px;
-        font-weight: bold;
-        background-color: $G-color-main;
-        color: $G-color-white-extra;
-        border-radius: 4px;
+      .isNewIcon {
+        width: 28px;
+        height: 14px;
+        padding-top: 1px;
       }
 
       .subjectContent {
