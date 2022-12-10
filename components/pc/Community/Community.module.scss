@@ -42,6 +42,7 @@
             width: 260px;
             background-color: $G-background-color-default;
             border: 1px solid $G-background-color-default;
+            border-radius: 0 6px 6px 0;
             padding: 10px 46px 10px 16px;
           }
 
@@ -98,7 +99,6 @@
     @extend .white-box;
 
     width: 100%;
-    padding: 0 10px;
     height: auto;
   }
 

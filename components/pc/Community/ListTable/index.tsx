@@ -39,7 +39,7 @@ export default function ListTable() {
                 : post.bo_subject
 
           return (
-            <tr key={post.wr_id}>
+            <tr key={post.wr_id} className={ post.is_notice ? styles.notice : '' }>
               <td>
                 {
                   post.is_notice

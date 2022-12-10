@@ -12,8 +12,8 @@
   thead {
     th {
       height: 60px;
-      color: $G-color-gray-light;
-      border-bottom: 1px solid $G-color-border-table;
+      color: $G-color-gray-medium;
+      border-bottom: 1px solid $G-color-border-table-bold;
       font-weight: normal;
     }
   }
@@ -29,6 +29,10 @@
           font-weight: 400;
         }
       }
+    }
+
+    .notice {
+      background-color: #FAFAFA;
     }
 
     tr {
