@@ -5,6 +5,8 @@ import Member from "../../../common/Member";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
+//<img src="/image/icon/board-new-content-icon.svg" alt="new board" />
+
 export default function ListTable() {
   const { posts } = useSelector((state: RootState) => state.post);
   const router = useRouter();
@@ -40,7 +42,19 @@ export default function ListTable() {
 
           return (
             <tr key={post.wr_id}>
-              <td>{ post.is_notice ? <span className={styles.isNotice}>공지</span> : tag || post.num }</td>
+              <td>
+                {
+                  post.is_notice
+                    ? <span className={styles.isNotice}>공지</span>
+                    : post.is_new
+                      ? (
+                        <div className={styles.isNewList}>
+                          <span className={styles.newIcon}>NEW</span>
+                        </div>
+                      )
+                      : tag || post.num
+                }
+              </td>
               <td className={styles.left}>
                 <div className={styles.subjectContent}>
                   {
@@ -55,13 +69,6 @@ export default function ListTable() {
                           {post.subject}
                         </Link>
                       )
-                  }
-                  {
-                    post.is_new && (
-                      <span className={styles.newSubjectIcon}>
-                        <img src="/image/icon/board-new-content-icon.svg" alt="board-new-content-icon" />
-                      </span>
-                    )
                   }
                   {
                     post.wr_comment > 0 && (

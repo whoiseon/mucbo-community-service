@@ -45,6 +45,19 @@
         font-weight: 600;
       }
 
+      .isNewList {
+        padding-bottom: 4px;
+
+        .newIcon {
+          padding: 2px 4px;
+          font-size: 10px;
+          font-weight: bold;
+          background-color: $G-color-main;
+          color: $G-color-white-extra;
+          border-radius: 4px;
+        }
+      }
+
       .subjectContent {
         display: flex;
         align-items: center;
