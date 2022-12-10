@@ -68,6 +68,7 @@
         background-color: $G-color-white-extra;
         color: $G-color-gray-extra;
         font-weight: 500;
+        white-space: nowrap;
 
         &:hover {
           background-color: $G-color-white-hover;

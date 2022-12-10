@@ -14,7 +14,7 @@ export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page 
   try {
     const response = await axios.get('https://cheatdot.com/api/v1/board/all.php', {
       params: {
-        page,
+        page: page || '1'
       }
     });
 

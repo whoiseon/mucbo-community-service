@@ -16,8 +16,6 @@ export default function Pagination({ totalPage, limit, page, setPage }: Paginati
   const [currentPageArray, setCurrentPageArray] = useState<number[] | undefined>([]);
   const [totalPageArray, setTotalPageArray] = useState<number[][] | undefined>([]);
 
-  const asPath = router.asPath.split('?')[0]
-
   const sliceArrayByLimit = useCallback((totalPage: number | undefined, limit: number) => {
     if (totalPage) {
       const totalPageArray = Array(totalPage)
@@ -49,11 +47,13 @@ export default function Pagination({ totalPage, limit, page, setPage }: Paginati
     }
   }, [totalPage]);
 
+  console.log(router);
+
   return (
     <div className={styles.pagingWrapper}>
       {
         !(page === 1) && (
-          <Link href={`${asPath}?page=${page - 1}`}>
+          <Link href={`/${router.query.board}/${router.query.table}?page=${page - 1}`}>
             <a>
               <img src="/image/icon/page-prev-icon.svg" alt="page-prev-icon" />
             </a>
@@ -76,7 +76,7 @@ export default function Pagination({ totalPage, limit, page, setPage }: Paginati
 
 
           return (
-            <Link key={i} href={`${asPath}?page=${i + 1}`}>
+            <Link key={i} href={`/${router.query.board}/${router.query.table}?page=${i + 1}`}>
               <a className={`${defaultPageStyle} ${currentStyle}`}>
                 { i + 1 }
               </a>
@@ -86,7 +86,7 @@ export default function Pagination({ totalPage, limit, page, setPage }: Paginati
       }
       {
         !(page === totalPage) && (
-          <Link href={`${asPath}?page=${page + 1}`}>
+          <Link href={`/${router.query.board}/${router.query.table}?page=${page + 1}`}>
             <a>
               <img src="/image/icon/page-next-icon.svg" alt="page-next-icon" />
             </a>

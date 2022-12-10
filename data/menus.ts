@@ -1,9 +1,10 @@
 export declare type HeaderMenuType = {
   name: string,
-  table: string,
+  board: string,
   path: string
   subTable?: {
     name: string,
+    board: string,
     table: string,
     path: string
   }[],
@@ -12,119 +13,136 @@ export declare type HeaderMenuType = {
 export const headerMenus = [
   {
     name: '공지사항',
-    table: 'customer',
+    board: 'customer',
     path: '/customer/notice',
     subTable: [
       {
         name: '공지사항',
-        table: 'customer',
+        board: 'customer',
+        table: 'notice',
         path: '/customer/notice'
       },
       {
         name: '업데이트',
-        table: 'customer',
+        board: 'customer',
+        table: 'update',
         path: '/customer/update'
       }
     ]
   },
   {
     name: '전체글보기',
-    table: 'all',
+    board: 'board',
     path: '/board/all'
 
   },
   {
     name: '커뮤니티',
-    table: 'community',
+    board: 'community',
     path: '/community/free',
     subTable: [
       {
         name: '자유',
-        table: 'community',
+        board: 'community',
+        table: 'free',
         path: '/community/free'
       },
       {
         name: '유머',
-        table: 'community',
+        board: 'community',
+        table: 'humor',
         path: '/community/humor'
       },
       {
         name: '포토',
-        table: 'community',
+        board: 'community',
+        table: 'photo',
         path: '/community/photo'
       },
       {
         name: '피해사례',
-        table: 'community',
+        board: 'community',
+        table: 'crime',
         path: '/community/crime'
       },
       {
         name: '신고',
-        table: 'community',
+        board: 'community',
+        table: 'report',
         path: '/community/report'
       },
       {
         name: '가입인사',
-        table: 'community',
+        board: 'community',
+        table: 'hello',
         path: '/community/hello'
       }
     ]
   },
   {
     name: '게임들',
-    table: 'games',
+    board: 'games',
     path: '/games/sudden_attack',
     subTable: [
       {
         name: '서든어택',
-        table: 'games',
+        board: 'games',
+        table: 'sudden_attack',
         path: '/games/sudden_attack'
       },
       {
         name: '오버워치',
-        table: 'games',
+        board: 'games',
+        table: 'over_watch',
         path: '/games/over_watch'
       },
       {
         name: '배그',
-        table: 'games',
+        board: 'games',
+        table: 'battle_ground',
         path: '/games/battle_ground'
       },
       {
         name: '발로란트',
-        table: 'games',
+        board: 'games',
+        table: 'valorant',
         path: '/games/valorant'
       },
       {
         name: '던전앤파이터',
-        table: 'games',
+        board: 'games',
+        table: 'df',
         path: '/games/df'
       },
       {
         name: '리그오브레전드',
-        table: 'games',
+        board: 'games',
+        table: 'lol',
         path: '/games/lol'
       },
       {
         name: '메이플스토리',
-        table: 'games',
+        board: 'games',
+        table: 'maple_story',
         path: '/games/maple_story'
       },
       {
         name: '기타게임',
-        table: 'games',
+        board: 'games',
+        table: 'etc_game',
         path: '/games/etc_game'
       },
       {
         name: '게임요청',
-        table: 'games',
+        board: 'games',
+        table: 'request_game',
         path: '/games/request_game'
       },
     ]
   },
   {
     name: 'Q&A',
-    table: 'qa',
+    board: 'qa',
     path: '/qa'
   }
 ];
