@@ -47,11 +47,7 @@ export default function ListTable() {
                   post.is_notice
                     ? <span className={styles.isNotice}>공지</span>
                     : post.is_new
-                      ? (
-                        <div className={styles.isNewList}>
-                          <span className={styles.newIcon}>NEW</span>
-                        </div>
-                      )
+                      ? <span className={styles.newIcon}>NEW</span>
                       : tag || post.num
                 }
               </td>
