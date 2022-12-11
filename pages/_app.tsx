@@ -7,12 +7,22 @@ import {isMobile} from "react-device-detect";
 import PCLayout from "../components/pc/Layout";
 import {wrapper} from "../store";
 import {useRouter} from "next/router";
+import {useRef} from "react";
+import { Hydrate } from "react-query/hydration";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 interface IProps {
   isMobile: boolean,
+  dehydratedState: any
 }
 
 const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
+  const queryClientRef = useRef<QueryClient>();
+
+  if (!queryClientRef.current) {
+    queryClientRef.current = new QueryClient();
+  }
+
   const router = useRouter();
 
   return (
@@ -25,9 +35,13 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
           <Component {...pageProps} />
         )
         : (
-          <PCLayout>
-            <Component {...pageProps} />
-          </PCLayout>
+          <QueryClientProvider client={queryClientRef.current}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <PCLayout>
+                <Component {...pageProps} />
+              </PCLayout>
+            </Hydrate>
+          </QueryClientProvider>
         )
   )
 };

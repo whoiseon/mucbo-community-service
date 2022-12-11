@@ -9,11 +9,15 @@ import useInput from "../../../hooks/useInput";
 import { headerMenus } from "../../../data/menus";
 import Link from "next/link";
 import QaTable from "./QaTable";
+import {useQuery} from "react-query";
+import {getPostAll} from "../../../apis/post";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
 
   const router = useRouter();
+
+  // const dataQuery = useQuery("getPostAll", () => getPostAll(router.query.page))
 
   const [search, onChangeSearch] = useInput('');
   const [page, setPage] = useState<number>(Number(router.query.page) || 1);

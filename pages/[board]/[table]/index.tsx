@@ -8,6 +8,8 @@ import PCBoard from "../../../components/pc/Board";
 import {wrapper} from "../../../store";
 import {getPostsAll, getPostsByTable} from "../../../store/slices/postSlice";
 import {useRouter} from "next/router";
+import {dehydrate, QueryClient} from "react-query";
+import {getPostAll} from "../../../apis/post";
 
 interface IProps {
   isMobile: boolean,
@@ -46,6 +48,11 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
+  console.log(query.page);
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery('getPostAll', () => getPostAll(query.page), { staleTime: 1000 })
+
   if (query.board === 'board' || query.table === 'all' ) {
     await store.dispatch(getPostsAll({
       page: Number(query.page),
@@ -69,7 +76,8 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   return {
     props: {
       isMobile: mobile,
-      title: headTitle
+      title: headTitle,
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient)))
     },
   };
 });

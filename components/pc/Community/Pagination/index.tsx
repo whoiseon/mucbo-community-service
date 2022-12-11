@@ -47,8 +47,6 @@ export default function Pagination({ totalPage, limit, page, setPage }: Paginati
     }
   }, [totalPage]);
 
-  console.log(router);
-
   return (
     <div className={styles.pagingWrapper}>
       {
