@@ -6,7 +6,6 @@ import {useCallback} from "react";
 import MobileRoot from "../../../components/mobile/Root";
 import PCBoard from "../../../components/pc/Board";
 import {wrapper} from "../../../store";
-import {getPostsAll, getPostsByTable} from "../../../store/slices/postSlice";
 import {useRouter} from "next/router";
 import {dehydrate, QueryClient, useQuery} from "react-query";
 import {getPost} from "../../../apis/post";
