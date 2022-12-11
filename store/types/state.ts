@@ -11,6 +11,9 @@ export interface PostState {
   getPostsAllLoading: boolean,
   getPostsAllDone: boolean,
   getPostsAllError: string | null | SerializedError,
+  getPostsByTableLoading: boolean,
+  getPostsByTableDone: boolean,
+  getPostsByTableError: string | null | SerializedError,
 }
 
 export interface ReducerStates {

@@ -33,8 +33,7 @@ export const headerMenus = [
   {
     name: '전체글보기',
     board: 'board',
-    path: '/board/all'
-
+    path: '/board/all',
   },
   {
     name: '커뮤니티',

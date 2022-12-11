@@ -10,6 +10,7 @@ import {useRouter} from "next/router";
 import {useRef} from "react";
 import { Hydrate } from "react-query/hydration";
 import {QueryClient, QueryClientProvider} from "react-query";
+import {Provider} from "react-redux";
 
 interface IProps {
   isMobile: boolean,
@@ -17,6 +18,8 @@ interface IProps {
 }
 
 const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
+  const {store, props} = wrapper.useWrappedStore(pageProps);
+
   const queryClientRef = useRef<QueryClient>();
 
   if (!queryClientRef.current) {
@@ -35,13 +38,15 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
           <Component {...pageProps} />
         )
         : (
-          <QueryClientProvider client={queryClientRef.current}>
-            <Hydrate state={pageProps.dehydratedState}>
-              <PCLayout>
-                <Component {...pageProps} />
-              </PCLayout>
-            </Hydrate>
-          </QueryClientProvider>
+          <Provider store={store}>
+            <QueryClientProvider client={queryClientRef.current}>
+              <Hydrate state={pageProps.dehydratedState}>
+                <PCLayout>
+                  <Component {...props.pageProps} />
+                </PCLayout>
+              </Hydrate>
+            </QueryClientProvider>
+          </Provider>
         )
   )
 };
@@ -63,4 +68,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

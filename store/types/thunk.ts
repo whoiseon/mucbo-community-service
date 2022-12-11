@@ -1,8 +1,8 @@
 export interface GetPostsAllPrams {
-  page: number
+  page: string | string[] | undefined
 }
 
 export interface GetPostsByTable {
-  page: number,
+  page: string | string[] | undefined,
   table: string | string[] | undefined
 }

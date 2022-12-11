@@ -4,9 +4,18 @@ import {RootState} from "../../../../store/reducers";
 import Member from "../../../common/Member";
 import Link from "next/link";
 import {useRouter} from "next/router";
+import {useQuery} from "react-query";
+import {getPost} from "../../../../apis/post";
 
 export default function ListTable() {
-  const { posts } = useSelector((state: RootState) => state.post);
+  // const { posts } = useSelector((state: RootState) => state.post);
+
+  const { data: postData, isError, error, status } = useQuery("getPost", () => getPost({
+    board: router.query.board,
+    table: router.query.table,
+    page: router.query.page,
+  }));
+
   const router = useRouter();
 
   return (
@@ -29,7 +38,7 @@ export default function ListTable() {
       </thead>
       <tbody>
       {
-        posts?.message.result.list.map((post: any, idx: number) => {
+        postData?.message.result.list.map((post: any, idx: number) => {
           const tag = post.bo_subject === '메이플스토리'
             ? post.bo_subject.substring(0, 3)
             : post.bo_subject === '배틀그라운드'
@@ -50,7 +59,7 @@ export default function ListTable() {
               <td className={styles.left}>
                 <div className={styles.subjectContent}>
                   {
-                    router.pathname === '/board/all'
+                    router.query.board === 'board' && router.query.table === 'all'
                       ? (
                         <Link href={`/${post.gr_id}/${post.bo_table}/${post.wr_id}`}>
                           {post.subject}
