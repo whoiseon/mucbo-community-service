@@ -6,24 +6,19 @@ import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoard from "../../components/pc/Board";
 import {wrapper} from "../../store";
-import {getPost} from "../../apis/post";
-import {QueryClient, useQuery} from "react-query";
-import {useRouter} from "next/router";
+import {getPostsByTable} from "../../store/slices/postSlice";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers";
 
 interface IProps {
   isMobile: boolean,
+  title: string
 }
 
-const QaPage: NextPage<IProps> = ({ isMobile }) => {
-  const router = useRouter();
+const QaPage: NextPage<IProps> = ({ isMobile, title }) => {
+  const { posts } = useSelector((state: RootState) => state.post);
 
-  const { data: postData } = useQuery("getPost", () => getPost({
-    board: router.query.board,
-    table: router.query.table,
-    page: router.query.page,
-  }));
-
-  const headTitle = postData.message.result.title.replace('치트닷컴', '먹보닷컴') || '404';
+  const headTitle = posts?.message.result.title.replace('치트닷컴', '먹보닷컴');
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
@@ -54,13 +49,19 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('getPost', () => getPost({
-    board: query.board,
-    table: query.table,
+  await store.dispatch(getPostsByTable({
     page: query.page,
-  }), { staleTime: 1000 });
+    table: 'qa'
+  }));
+
+  const getState = store.getState();
+
+  let headTitle;
+
+  if (getState.post.posts) {
+    const getStateTitle = getState.post.posts.message.result.title;
+    headTitle = getStateTitle.replace('치트닷컴', '먹보닷컴')
+  }
 
   return {
     props: {

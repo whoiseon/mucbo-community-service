@@ -13,22 +13,18 @@ import {useQuery} from "react-query";
 import {getPost} from "../../../apis/post";
 
 export default function Community() {
-  const router = useRouter();
+  const { posts } = useSelector((state: RootState) => state.post);
 
-  const { data: postData, isError, error, status } = useQuery("getPost", () => getPost({
-    board: router.query.board,
-    table: router.query.table,
-    page: router.query.page,
-  }));
+  const router = useRouter();
 
   const [search, onChangeSearch] = useInput('');
   const [page, setPage] = useState<number>(Number(router.query.page) || 1);
 
   const subMenus = headerMenus.find((v) => v.board === router.query.board)
-  const totalPage = postData?.message.result.total_count && Math.ceil(postData?.message.result.total_count / 20);
+  const totalPage = posts?.message.result.total_count && Math.ceil(posts?.message.result.total_count / 20);
 
   const handleTitleSlice = useCallback(() => {
-    const title = postData?.message.result.title
+    const title = posts?.message.result.title
     const slicedTitleArray = title?.split(' ');
 
     if (slicedTitleArray) {
@@ -36,7 +32,7 @@ export default function Community() {
     }
 
     return 'Title - error'
-  }, [postData?.message.result.title]);
+  }, [posts?.message.result.title]);
 
   useEffect(() => {
     if (router.query.page) {

@@ -1,7 +1,7 @@
 export interface BoardType {
   error: {
-    message: string,
-    code: string
+    msg: string,
+    code: number
   },
   message: {
     result: {
@@ -10,6 +10,6 @@ export interface BoardType {
       }[],
       total_count: number,
       title: string
-    }
+    },
   }
 }

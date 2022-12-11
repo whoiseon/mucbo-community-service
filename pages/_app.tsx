@@ -8,13 +8,11 @@ import PCLayout from "../components/pc/Layout";
 import {wrapper} from "../store";
 import {useRouter} from "next/router";
 import {useRef} from "react";
-import { Hydrate } from "react-query/hydration";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {Provider} from "react-redux";
 
 interface IProps {
   isMobile: boolean,
-  dehydratedState: any
 }
 
 const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
@@ -39,13 +37,9 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
         )
         : (
           <Provider store={store}>
-            <QueryClientProvider client={queryClientRef.current}>
-              <Hydrate state={pageProps.dehydratedState}>
-                <PCLayout>
-                  <Component {...props.pageProps} />
-                </PCLayout>
-              </Hydrate>
-            </QueryClientProvider>
+            <PCLayout>
+              <Component {...props.pageProps} />
+            </PCLayout>
           </Provider>
         )
   )

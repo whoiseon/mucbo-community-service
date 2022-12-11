@@ -8,13 +8,7 @@ import {useQuery} from "react-query";
 import {getPost} from "../../../../apis/post";
 
 export default function ListTable() {
-  // const { posts } = useSelector((state: RootState) => state.post);
-
-  const { data: postData, isError, error, status } = useQuery("getPost", () => getPost({
-    board: router.query.board,
-    table: router.query.table,
-    page: router.query.page,
-  }));
+  const { posts } = useSelector((state: RootState) => state.post);
 
   const router = useRouter();
 
@@ -38,7 +32,7 @@ export default function ListTable() {
       </thead>
       <tbody>
       {
-        postData?.message.result.list.map((post: any, idx: number) => {
+        posts?.message.result.list?.map((post: any, idx: number) => {
           const tag = post.bo_subject === '메이플스토리'
             ? post.bo_subject.substring(0, 3)
             : post.bo_subject === '배틀그라운드'
