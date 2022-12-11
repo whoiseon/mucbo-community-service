@@ -17,7 +17,6 @@ interface IProps {
 
 const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
   const router = useRouter();
-  let headTitle;
 
   const { data: postData } = useQuery("getPost", () => getPost({
     board: router.query.board,
@@ -25,9 +24,7 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
     page: router.query.page,
   }));
 
-  if (postData.message.result.title) {
-    headTitle = postData.message.result.title.replace('치트닷컴', '먹보닷컴') || '404';
-  }
+  const headTitle = postData.message.result.title.replace('치트닷컴', '먹보닷컴') || '404';
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
