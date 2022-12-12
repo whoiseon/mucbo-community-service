@@ -31,7 +31,7 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
       ? (
         <Component {...pageProps} />
       )
-      : router.pathname === '/login' || router.pathname === '/signup'
+      : router.pathname === '/login' || router.pathname === '/signup' || router.pathname === '/404'
         ? (
           <Component {...pageProps} />
         )

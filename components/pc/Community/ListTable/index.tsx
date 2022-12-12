@@ -60,7 +60,7 @@ export default function ListTable() {
                         </Link>
                       )
                       : (
-                        <Link href={`${router.asPath}/${post.num}`}>
+                        <Link href={`${router.asPath}/${post.wr_id}`}>
                           {post.subject}
                         </Link>
                       )

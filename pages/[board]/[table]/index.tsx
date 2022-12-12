@@ -1,5 +1,5 @@
 import Head from "next/head";
-import {NextPage, GetServerSideProps} from "next";
+import {NextPage, GetServerSideProps, GetStaticPaths} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {useCallback, useEffect} from "react";
@@ -9,15 +9,12 @@ import {wrapper} from "../../../store";
 import {getPostsAll, getPostsByTable} from "../../../store/slices/postSlice";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../store/reducers";
-import {useRouter} from "next/router";
 
 interface IProps {
   isMobile: boolean,
 }
 
 const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
-  const router = useRouter();
-
   const { posts } = useSelector((state: RootState) => state.post);
 
   const headTitle = posts?.message.result.title
@@ -44,8 +41,6 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
 };
 
 export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res, query}) => {
-  const getState = store.getState();
-
   let mobile;
 
   if (req) {
@@ -54,20 +49,6 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   } else {
     mobile = isMobile;
   }
-
-  // const queryClient = new QueryClient();
-
-  // await queryClient.prefetchQuery('getPost', () => getPost({
-  //   board: query.board,
-  //   table: query.table,
-  //   page: query.page,
-  // }), { staleTime: 1000 });
-
-  // if (getState.post.posts?.error.msg !== '') {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
 
   if (query.board === 'board' && query.table === 'all') {
     await store.dispatch(getPostsAll({
@@ -80,10 +61,17 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     }));
   }
 
+  const getState = store.getState().post;
+
+  if (getState.posts?.error.msg) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       isMobile: mobile,
-      // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient)))
     },
   };
 });

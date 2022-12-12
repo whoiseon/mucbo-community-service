@@ -1,3 +1,5 @@
+import {ReactNode} from "react";
+
 export interface BoardType {
   error: {
     msg: string,
@@ -10,6 +12,21 @@ export interface BoardType {
       }[],
       total_count: number,
       title: string
+    },
+  }
+}
+
+export interface ViewType {
+  error: {
+    msg: string,
+    code: number
+  },
+  message: {
+    result: {
+      [key: string]: any,
+    },
+    comment_list: {
+      [key: string]: any,
     },
   }
 }

@@ -1,16 +1,20 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
-import {GetPostsAllPrams, GetPostsByTable} from "../types/thunk";
+import {GetPostsAllPrams, GetPostsByTable, GetViewPostParams} from "../types/thunk";
 
 const initialState: PostState = {
   posts: null,
+  viewPost: null,
   getPostsAllLoading: false,
   getPostsAllDone: false,
   getPostsAllError: null,
   getPostsByTableLoading: false,
   getPostsByTableDone: false,
   getPostsByTableError: null,
+  getViewPostLoading: false,
+  getViewPostDone: false,
+  getViewPostError: null,
 }
 
 export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page }: GetPostsAllPrams) => {
@@ -20,8 +24,6 @@ export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page 
         page: page || '1'
       }
     });
-
-    if (response.data.error.code === 100) return null;
 
     return response.data;
   } catch (error) {
@@ -38,7 +40,20 @@ export const getPostsByTable = createAsyncThunk('post/GET_POSTS_BY_TABLE', async
       }
     });
 
-    if (response.data.error.code === 100) return null;
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+})
+
+export const getViewPost = createAsyncThunk('post/GET_VIEW_POST', async ({ table, id }: GetViewPostParams) => {
+  try {
+    const response = await axios.get('https://cheatdot.com/api/v1/board/board.php', {
+      params: {
+        bo_table: table,
+        wr_id: id,
+      }
+    });
 
     return response.data;
   } catch (error) {
@@ -81,6 +96,21 @@ export const postSlice = createSlice({
         state.getPostsByTableLoading = false;
         state.getPostsByTableDone = false;
         state.getPostsByTableError = action.error;
+      })
+      .addCase(getViewPost.pending, (state) => {
+        state.getViewPostLoading = true;
+        state.getViewPostDone = false;
+        state.getViewPostError = null;
+      })
+      .addCase(getViewPost.fulfilled, (state, action) => {
+        state.getPostsByTableLoading = false;
+        state.getPostsByTableDone = true;
+        state.viewPost = action.payload;
+      })
+      .addCase(getViewPost.rejected, (state, action) => {
+        state.getViewPostLoading = false;
+        state.getViewPostDone = false;
+        state.getViewPostError = action.error;
       })
   }
 });

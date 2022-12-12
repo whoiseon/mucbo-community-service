@@ -54,13 +54,12 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     table: 'qa'
   }));
 
-  const getState = store.getState();
+  const getState = store.getState().post;
 
-  let headTitle;
-
-  if (getState.post.posts) {
-    const getStateTitle = getState.post.posts.message.result.title;
-    headTitle = getStateTitle.replace('치트닷컴', '먹보닷컴')
+  if (getState.posts?.error.msg) {
+    return {
+      notFound: true,
+    }
   }
 
   return {
