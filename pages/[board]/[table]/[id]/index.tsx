@@ -56,19 +56,16 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   }))
 
   const getState = store.getState().post;
-  //
-  // if (getState.posts?.error.msg) {
-  //   return {
-  //     notFound: true,
-  //   }
-  // }
 
-  console.log(getState.viewPost);
+  if (getState.viewPost?.error.msg) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
       isMobile: mobile,
-      // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient)))
     },
   };
 });

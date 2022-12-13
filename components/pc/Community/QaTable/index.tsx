@@ -13,7 +13,6 @@ export default function QaTable() {
       <ul>
         {
           posts?.message.result.list.map((post: any, i: number) => {
-            console.log(post);
             return (
               <li key={post.wr_id}>
                 <div className={styles.commentCount}>
