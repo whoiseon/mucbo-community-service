@@ -15,6 +15,7 @@ export default function ChatItem({ chat }: ChatItemProps) {
         width={24}
         height={24}
         modalTop={24}
+        modalLeft={0}
       />
       <span>{ chat.body.message }</span>
     </div>

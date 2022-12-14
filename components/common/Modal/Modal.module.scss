@@ -1,6 +1,6 @@
 @charset "UTF-8";
-@import "../../../../styles/common/variables";
-@import '../../../../styles/common/placeholders';
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
 
 @keyframes ModalAnimation {
   0% {
@@ -21,11 +21,11 @@
   .wrapper {
     background-color: $G-color-white-extra;
     border-radius: 6px;
-    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
 
     ul {
       margin: 0;
-      padding: 0;
+      padding: 10px 0;
 
       li {
         width: 120px;

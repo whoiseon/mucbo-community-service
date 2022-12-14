@@ -3,11 +3,28 @@ import {RootState} from "../../../../store/reducers";
 import styles from "./ViewPage.module.scss";
 import Member from "../../../common/Member";
 import Image from "next/image";
+import Button from "../../../common/Button";
+import Modal from "../../../common/Modal";
+import React, {useCallback, useState} from "react";
+import {useRouter} from "next/router";
+import CommentList from "../CommentList";
+import HashTags from "../../HashTags";
+import QaCommentList from "../QaCommentList";
 
 export default function ViewPage() {
+  const router = useRouter();
+
   const { viewPost } = useSelector((state: RootState) => state.post);
+
+  const [moreModal, setMoreModal] = useState(false);
+
+  const openListMoreModal = useCallback(() => {
+    setMoreModal((prev) => !prev);
+  }, []);
+
+  const isQaPage = router.asPath.split('/')[1];
+
   const viewData = viewPost?.message.result;
-  console.log(viewPost);
 
   return (
     <div className={styles.wrapper}>
@@ -15,7 +32,10 @@ export default function ViewPage() {
         <div className={styles.viewHeader}>
           <header>
             <h1 className={styles.headerTitle}>
-              { viewData?.subject}
+              {
+                isQaPage === 'qa' && <span className={styles.qaTitle}>Q. </span>
+              }
+              { viewData?.subject }
             </h1>
           </header>
           <section>
@@ -27,6 +47,7 @@ export default function ViewPage() {
                   width={22}
                   height={22}
                   modalTop={24}
+                  modalLeft={0}
                 />
               </div>
               <span className={styles.contour}>ˑ</span>
@@ -39,61 +60,53 @@ export default function ViewPage() {
               </div>
             </div>
             <div className={styles.right}>
-              456
+              <Button type="svg" onClick={openListMoreModal}>
+                <Image
+                  src="/image/icon/more-btn-icon.svg"
+                  alt="board more button"
+                  width={16}
+                  height={16}
+                />
+              </Button>
+              {
+                moreModal && (
+                  <Modal setOpenUserModal={setMoreModal} modalTop={38} modalLeft={-86}>
+                    <ul>
+                      <li>
+                        <button type="button">
+                          URL 복사
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button">
+                          게시물 신고
+                        </button>
+                      </li>
+                    </ul>
+                  </Modal>
+                )
+              }
             </div>
           </section>
         </div>
         <section className={styles.viewContent}>
-          <div dangerouslySetInnerHTML={{ __html: viewData?.content }} />
-        </section>
-      </article>
-      <article className={styles.comment}>
-        <div className={styles.commentHeader}>
-          <header>
-            <span>댓글</span>
-            <span className={styles.count}>{ viewData?.comment_list.length }</span>
-          </header>
-        </div>
-        <section className={styles.commentList}>
+          <div className={styles.text} dangerouslySetInnerHTML={{ __html: viewData?.content }} />
           {
-            viewData?.comment_list.map((comment: any, i: number) => {
-              return (
-                <article key={comment.comment_id} className={comment.is_reply && styles.reply}>
-                  {
-                    comment.is_reply && (
-                      <div className={styles.replyIcon}>
-                        <Image
-                          src="/image/icon/reply-icon.svg"
-                          alt="reply"
-                          width={18}
-                          height={13}
-                        />
-                      </div>
-                    )
-                  }
-                  <div className={styles.commentInfo}>
-                    <span className={styles.thumb}>
-                      <Image
-                        src="/image/icon/no-profile-icon.svg"
-                        alt="No profile"
-                        width={36}
-                        height={36}
-                      />
-                    </span>
-                    <div className={styles.userInfo}>
-                      <Member nickname={comment.name} level={comment.mb_level} width={22} height={22} modalTop={22} />
-                      <p>{ comment.date }</p>
-                    </div>
-                  </div>
-                  <div className={styles.commentContent}>
-                    <p dangerouslySetInnerHTML={{ __html: comment.comment }} />
-                  </div>
-                </article>
+            isQaPage === 'qa'
+              ? (
+                <div className={styles.hashList}>
+                  <HashTags item={viewData?.wr_2.split(',')} />
+                </div>
               )
-            })
+              : null
           }
         </section>
       </article>
+      {
+        isQaPage === 'qa'
+          ? <QaCommentList />
+          : <CommentList />
+      }
     </div>
   );
 };

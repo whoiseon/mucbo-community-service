@@ -82,7 +82,14 @@ export default function ListTable() {
                 </div>
               </td>
               <td className={styles.left}>
-                <Member nickname={post.wr_name || post.name} level={post.mb_level} width={22} height={22} modalTop={44} />
+                <Member
+                  nickname={post.wr_name || post.name}
+                  level={post.mb_level}
+                  width={22}
+                  height={22}
+                  modalTop={44}
+                  modalLeft={0}
+                />
               </td>
               <td>{post.datetime2}</td>
               <td>{post.wr_hit}</td>

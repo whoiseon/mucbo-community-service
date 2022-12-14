@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.comment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  border-top: 1px solid $G-color-border-table;
+
+  .replyIcon {
+    position: absolute;
+    z-index: 9999;
+    opacity: 0.1;
+    left: 40px
+  }
+
+  .commentInfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .thumb {
+      margin-right: 10px;
+    }
+
+    .userInfo {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        margin-bottom: 6px;
+        & > span {
+          font-weight: 400;
+        }
+      }
+
+      p {
+        font-size: $G-font-size-h7;
+        color: $G-color-gray-medium;
+      }
+    }
+  }
+
+  .commentContent {
+    padding-bottom: 10px;
+    p {
+      line-height: 22px;
+    }
+  }
+
+  .replyBtn {
+    margin-left: -10px;
+    button {
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $G-color-gray-medium;
+    }
+  }
+
+  .replyForm {
+    & > aside {
+      padding: 20px 0;
+      border: none;
+    }
+  }
+}
+
+.reply {
+  background-color: #FAFAFA;
+  padding-left: 86px;
+  border-top: 1px solid $G-color-border-table-bold;
+}

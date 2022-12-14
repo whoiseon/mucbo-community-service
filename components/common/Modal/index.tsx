@@ -3,10 +3,12 @@ import styles from "./Modal.module.scss";
 
 interface ModalProps {
   setOpenUserModal: Dispatch<SetStateAction<boolean>>
-  modalTop: number
+  modalTop: number,
+  modalLeft: number,
+  children: string | JSX.Element,
 }
 
-export default function Modal({ setOpenUserModal, modalTop }: ModalProps) {
+export default function Modal({ setOpenUserModal, modalTop, modalLeft, children }: ModalProps) {
   const ModalRef = useRef<HTMLDivElement>(null);
 
   const onClickCloseModal = useCallback(() => {
@@ -31,23 +33,12 @@ export default function Modal({ setOpenUserModal, modalTop }: ModalProps) {
   return (
     <div
       className={styles.root}
-      style={{ top: `${modalTop}px` }}
+      style={{ top: `${modalTop}px`, left: `${modalLeft}px` }}
       onClick={onClickCloseModal}
       ref={ModalRef}
     >
       <div className={styles.wrapper}>
-        <ul>
-          <li>
-            <button type="button">
-              게시글보기
-            </button>
-          </li>
-          <li>
-            <button type="button">
-              1:1 채팅
-            </button>
-          </li>
-        </ul>
+        {children}
       </div>
     </div>
   );

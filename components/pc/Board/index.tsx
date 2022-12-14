@@ -6,7 +6,9 @@ import ViewPage from "./ViewPage";
 
 export default function BoardAll() {
   const router = useRouter();
+  const isQaPage = router.asPath.split('/');
 
+  console.log(isQaPage[1]);
   return (
     <div className={styles.container}>
       <div className={styles.left}>

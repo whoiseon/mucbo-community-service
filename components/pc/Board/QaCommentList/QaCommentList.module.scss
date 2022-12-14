@@ -1,0 +1,37 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.comment {
+  .commentHeader {
+    @extend .white-box;
+
+    margin-bottom: 20px;
+    padding: 40px;
+
+    header {
+      display: flex;
+      align-items: center;
+
+      .qaAnswer {
+        font-size: $G-font-size-h1;
+        font-weight: 500;
+        color: $G-color-main;
+        margin-right: 8px;
+      }
+
+      span {
+        font-size: $G-font-size-h4;
+        font-weight: 500;
+      }
+
+      .answerBtn {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .commentList {
+    padding-bottom: 20px;
+  }
+}

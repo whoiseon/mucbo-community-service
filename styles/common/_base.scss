@@ -57,3 +57,11 @@ input, select {
 input::placeholder {
   color: $G-color-gray-medium
 }
+
+textarea {
+  font-family: $G-font-family-base;
+
+  &::placeholder {
+    color: $G-color-gray-medium;
+  }
+}

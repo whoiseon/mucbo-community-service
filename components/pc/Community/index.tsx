@@ -9,8 +9,6 @@ import useInput from "../../../hooks/useInput";
 import { headerMenus } from "../../../data/menus";
 import Link from "next/link";
 import QaTable from "./QaTable";
-import {useQuery} from "react-query";
-import {getPost} from "../../../apis/post";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
