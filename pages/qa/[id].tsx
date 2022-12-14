@@ -7,17 +7,19 @@ import {wrapper} from "../../store";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {getViewPost} from "../../store/slices/postSlice";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers";
 
 interface IProps {
   isMobile: boolean,
 }
 
 const QaView: NextPage<IProps> = () => {
-  // const { posts } = useSelector((state: RootState) => state.post);
-  //
-  // const headTitle = posts?.message.result.title
-  //   ? posts?.message.result.title.replace('치트닷컴', '먹보닷컴')
-  //   : ''
+  const { viewPost } = useSelector((state: RootState) => state.post);
+
+  const headTitle = viewPost?.message.result.title
+    ? viewPost?.message.result.title.replace('치트닷컴', '먹보닷컴')
+    : ''
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
@@ -26,7 +28,7 @@ const QaView: NextPage<IProps> = () => {
   return (
     <>
       <Head>
-        <title>view</title>
+        <title>{ headTitle }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
