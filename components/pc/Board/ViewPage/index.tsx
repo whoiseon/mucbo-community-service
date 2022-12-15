@@ -42,6 +42,7 @@ export default function ViewPage() {
             <div className={styles.left}>
               <div>
                 <Member
+                  userId={viewData?.mb_id}
                   nickname={viewData?.name}
                   level={viewData?.mb_level}
                   width={22}
