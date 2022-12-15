@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 export default function NavItem({ name, path, board }: HeaderMenuType) {
   const router = useRouter();
 
-  const isActive = router.asPath.includes(board) ? styles.active: '';
+  let isActive = router.asPath.includes(board) ? styles.active: '';
 
   return (
     <li>
@@ -15,7 +15,7 @@ export default function NavItem({ name, path, board }: HeaderMenuType) {
           { name }
         </a>
       </Link>
-      {isActive && <div className={styles.activeBox}><div className={styles.line}></div></div>}
+      {isActive && <div className={styles.activeBox}><div className={styles.line} /></div>}
     </li>
   );
 };

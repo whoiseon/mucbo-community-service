@@ -15,7 +15,7 @@ export default function QaCommentList() {
         <header>
           <span className={styles.qaAnswer}>A. </span>
           <span>
-            총 {viewData?.comment_list.length} 개의 답변이 있습니다.
+            총 {viewData?.comment_list?.length} 개의 답변이 있습니다.
           </span>
           <div className={styles.answerBtn}>
             <Button type="primary">
@@ -26,7 +26,7 @@ export default function QaCommentList() {
       </div>
       <section className={styles.commentList}>
         {
-          viewData?.comment_list.map((comment: any, i: number) => {
+          viewData?.comment_list?.map((comment: any, i: number) => {
             console.log(comment);
             return (
               <QaComment key={comment.comment_id} comment={comment} />

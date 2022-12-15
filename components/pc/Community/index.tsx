@@ -11,7 +11,7 @@ import Link from "next/link";
 import QaTable from "./QaTable";
 
 export default function Community() {
-  const { posts } = useSelector((state: RootState) => state.post);
+  const { posts, viewUserInfo } = useSelector((state: RootState) => state.post);
 
   const router = useRouter();
 
@@ -40,40 +40,49 @@ export default function Community() {
     }
   }, [router.query.page])
 
+  const isUserBoard = router.asPath.split('/')[1];
+  const viewUserData = viewUserInfo?.message.result;
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <div className={styles.title}>
-          <div className={styles.titleLeft}>
-            <h1>{ handleTitleSlice() }</h1>
-          </div>
-          {
-            router.query.board !== 'board'
-              ? (
-                <div className={styles.titleRight}>
-                  <div className={styles.searchBox}>
-                    <select>
-                      <option value="wr_subject">제목</option>
-                      <option value="wr_content">내용</option>
-                      <option value="wr_subject || wr_content">제목+내용</option>
-                      <option value="mb_id,1">회원아이디</option>
-                      <option value="mb_id,0">회원아이디(코)</option>
-                      <option value="mb_name,1">글쓴이</option>
-                      <option value="mb_name,0">글쓴이(코)</option>
-                    </select>
-                    <input
-                      type="text"
-                      value={search}
-                      onChange={onChangeSearch}
-                      placeholder="검색어를 입력해주세요"
-                    />
-                    <img src="/image/icon/search-icon.svg" alt="search-icon" />
-                  </div>
+        {
+          isUserBoard === 'user' && viewUserInfo
+            ? viewUserData?.mb_nick
+            : (
+              <div className={styles.title}>
+                <div className={styles.titleLeft}>
+                  <h1>{ handleTitleSlice() }</h1>
                 </div>
-              )
-              : null
-          }
-        </div>
+                {
+                  router.query.board !== 'board'
+                    ? (
+                      <div className={styles.titleRight}>
+                        <div className={styles.searchBox}>
+                          <select>
+                            <option value="wr_subject">제목</option>
+                            <option value="wr_content">내용</option>
+                            <option value="wr_subject || wr_content">제목+내용</option>
+                            <option value="mb_id,1">회원아이디</option>
+                            <option value="mb_id,0">회원아이디(코)</option>
+                            <option value="mb_name,1">글쓴이</option>
+                            <option value="mb_name,0">글쓴이(코)</option>
+                          </select>
+                          <input
+                            type="text"
+                            value={search}
+                            onChange={onChangeSearch}
+                            placeholder="검색어를 입력해주세요"
+                          />
+                          <img src="/image/icon/search-icon.svg" alt="search-icon" />
+                        </div>
+                      </div>
+                    )
+                    : null
+                }
+              </div>
+            )
+        }
         {
           subMenus?.subTable
             ? (

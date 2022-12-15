@@ -10,6 +10,7 @@ export default function ChatItem({ chat }: ChatItemProps) {
   return (
     <div className={styles.wrapper}>
       <Member
+        userId="mucbo"
         nickname={chat.user.nickname}
         level={chat.user.level}
         width={24}

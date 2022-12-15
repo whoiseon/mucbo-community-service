@@ -11,3 +11,7 @@ export interface GetViewPostParams {
   table: string | string[] | undefined,
   id: number,
 }
+
+export interface GetViewUserInfoParams {
+  mb_id: string | string[] | undefined,
+}

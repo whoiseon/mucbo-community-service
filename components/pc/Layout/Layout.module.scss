@@ -97,9 +97,29 @@
   }
 }
 
-.mainWrapper {
+.main {
+  display: flex;
   width: 100%;
+  padding-top: 20px;
   height: auto;
+
+  .mainWrapper {
+    display: flex;
+    margin: 0 auto;
+    min-width: 1280px;
+
+    .mainLeft {
+      min-width: 380px;
+      max-width: 380px;
+      align-self: flex-start;
+      margin-right: 20px;
+    }
+
+    .mainRight {
+      width: 100%;
+      max-width: 880px;
+    }
+  }
 }
 
 .section {
@@ -134,7 +154,7 @@
 .footer {
   padding: 40px 0;
 
-  .inner {
+  .footerWrapper {
     display: flex;
     justify-content: space-between;
     width: 1280px;

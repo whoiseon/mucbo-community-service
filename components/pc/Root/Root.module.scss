@@ -4,19 +4,6 @@
 
 .container {
   display: flex;
-  width: 1280px;
-  padding-top: 20px;
-  margin: 0 auto;
-
-  .left {
-    min-width: 380px;
-    max-width: 380px;
-    align-self: flex-start;
-    margin-right: 20px;
-  }
-
-  .right {
-    width: 100%;
-    max-width: 880px;
-  }
+  flex-direction: column;
+  width: 100%;
 }

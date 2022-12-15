@@ -36,7 +36,15 @@ export default function Comment({ comment }: { comment: any }) {
           />
         </span>
         <div className={styles.userInfo}>
-          <Member nickname={comment.name} level={comment.mb_level} width={22} height={22} modalTop={22} modalLeft={0} />
+          <Member
+            userId={comment.mb_id}
+            nickname={comment.name}
+            level={comment.mb_level}
+            width={22}
+            height={22}
+            modalTop={22}
+            modalLeft={0}
+          />
           <p>{ comment.date }</p>
         </div>
       </div>

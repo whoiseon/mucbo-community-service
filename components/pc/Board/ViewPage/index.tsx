@@ -95,7 +95,7 @@ export default function ViewPage() {
             isQaPage === 'qa'
               ? (
                 <div className={styles.hashList}>
-                  <HashTags item={viewData?.wr_2.split(',')} />
+                  <HashTags item={viewData?.wr_2} />
                 </div>
               )
               : null

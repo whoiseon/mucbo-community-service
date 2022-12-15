@@ -30,3 +30,15 @@ export interface ViewType {
     },
   }
 }
+
+export interface ViewUserType {
+  error: {
+    msg: string,
+    code: number
+  },
+  message: {
+    result: {
+      [key: string]: string | number,
+    },
+  }
+}

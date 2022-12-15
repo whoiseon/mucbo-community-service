@@ -1,11 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
-import {GetPostsAllPrams, GetPostsByTable, GetViewPostParams} from "../types/thunk";
+import {GetPostsAllPrams, GetPostsByTable, GetViewPostParams, GetViewUserInfoParams} from "../types/thunk";
 
 const initialState: PostState = {
   posts: null,
   viewPost: null,
+  viewUserInfo: null,
   getPostsAllLoading: false,
   getPostsAllDone: false,
   getPostsAllError: null,
@@ -15,6 +16,9 @@ const initialState: PostState = {
   getViewPostLoading: false,
   getViewPostDone: false,
   getViewPostError: null,
+  getViewUserInfoLoading: false,
+  getViewUserInfoDone: false,
+  getViewUserInfoError: null,
 }
 
 export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page }: GetPostsAllPrams) => {
@@ -59,7 +63,22 @@ export const getViewPost = createAsyncThunk('post/GET_VIEW_POST', async ({ table
   } catch (error) {
     throw error;
   }
-})
+});
+
+export const getViewUserInfo = createAsyncThunk('post/GET_VIEW_USER_INFO', async ({ mb_id }: GetViewUserInfoParams) => {
+  try {
+    const response = await axios.post(`https://cheatdot.com/api/v1/user/api.php`, {
+      cmd: "get_user_info",
+      data: {
+        mb_id: mb_id,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+});
 
 export const postSlice = createSlice({
   name: 'post',
@@ -111,6 +130,21 @@ export const postSlice = createSlice({
         state.getViewPostLoading = false;
         state.getViewPostDone = false;
         state.getViewPostError = action.error;
+      })
+      .addCase(getViewUserInfo.pending, (state) => {
+        state.getViewUserInfoLoading = true;
+        state.getViewUserInfoDone = false;
+        state.getViewUserInfoError = null;
+      })
+      .addCase(getViewUserInfo.fulfilled, (state, action) => {
+        state.getViewUserInfoLoading = false;
+        state.getViewUserInfoDone = true;
+        state.viewUserInfo = action.payload;
+      })
+      .addCase(getViewUserInfo.rejected, (state, action) => {
+        state.getViewUserInfoLoading = false;
+        state.getViewUserInfoDone = false;
+        state.getViewUserInfoError = action.error;
       })
   }
 });

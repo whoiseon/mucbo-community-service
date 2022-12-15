@@ -1,26 +1,18 @@
 import {GetServerSideProps, NextPage} from "next";
+import {wrapper} from "../../store";
+import MobileDetect from "mobile-detect";
+import {isMobile} from "react-device-detect";
+import {getViewUserInfo} from "../../store/slices/postSlice";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoard from "../../components/pc/Board";
 import Head from "next/head";
-import {wrapper} from "../../store";
-import MobileDetect from "mobile-detect";
-import {isMobile} from "react-device-detect";
-import {getViewPost} from "../../store/slices/postSlice";
-import {useSelector} from "react-redux";
-import {RootState} from "../../store/reducers";
 
 interface IProps {
   isMobile: boolean,
 }
 
-const QaView: NextPage<IProps> = () => {
-  const { viewPost } = useSelector((state: RootState) => state.post);
-
-  const headTitle = viewPost?.message.result.title
-    ? viewPost?.message.result.title.replace('치트닷컴', '먹보닷컴')
-    : ''
-
+const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
   }, []);
@@ -28,7 +20,7 @@ const QaView: NextPage<IProps> = () => {
   return (
     <>
       <Head>
-        <title>{ headTitle }</title>
+        <title>유저정보</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
@@ -50,18 +42,9 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mobile = isMobile;
   }
 
-  await store.dispatch(getViewPost({
-    table: 'qa',
-    id: Number(query.id),
-  }));
-
-  const getState = store.getState().post;
-
-  if (getState.viewPost?.message.result.list) {
-    return {
-      notFound: true,
-    }
-  }
+  await store.dispatch(getViewUserInfo({
+    mb_id: decodeURIComponent(query.userId as string),
+  }))
 
   return {
     props: {
@@ -70,4 +53,4 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   };
 });
 
-export default QaView;
+export default UserId;

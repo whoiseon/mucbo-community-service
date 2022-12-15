@@ -5,6 +5,7 @@ import Button from "../../common/Button";
 import {footerMap} from "../../../data/menus";
 import FooterMap from "../FooterMap";
 import Link from "next/link";
+import ChatBox from "../ChatBox";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -48,8 +49,15 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </header>
-      <main className={styles.mainWrapper}>
-        { children }
+      <main className={styles.main}>
+        <div className={styles.mainWrapper}>
+          <div className={styles.mainLeft}>
+            <ChatBox />
+          </div>
+          <div className={styles.mainRight}>
+            { children }
+          </div>
+        </div>
       </main>
       <section className={styles.section}>
         <div className={styles.intro}>
@@ -69,7 +77,7 @@ export default function Layout({ children }: LayoutProps) {
         </div>
       </section>
       <footer className={styles.footer}>
-        <div className={styles.inner}>
+        <div className={styles.footerWrapper}>
           <div className={styles.left}>
             <div className={styles.footerLogo}>
               <Image

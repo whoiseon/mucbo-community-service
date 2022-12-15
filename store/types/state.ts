@@ -1,5 +1,5 @@
 import {SerializedError} from "@reduxjs/toolkit";
-import {BoardType, ViewType} from "../../types/board";
+import {BoardType, ViewType, ViewUserType} from "../../types/board";
 
 export interface ActionProps {
   type: string,
@@ -9,6 +9,7 @@ export interface ActionProps {
 export interface PostState {
   posts: BoardType | null,
   viewPost: ViewType | null,
+  viewUserInfo: ViewUserType | null,
   getPostsAllLoading: boolean,
   getPostsAllDone: boolean,
   getPostsAllError: string | null | SerializedError,
@@ -18,6 +19,9 @@ export interface PostState {
   getViewPostLoading: boolean,
   getViewPostDone: boolean,
   getViewPostError: string | null | SerializedError,
+  getViewUserInfoLoading: boolean,
+  getViewUserInfoDone: boolean,
+  getViewUserInfoError: string | null | SerializedError,
 }
 
 export interface ReducerStates {

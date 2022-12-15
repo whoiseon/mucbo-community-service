@@ -83,6 +83,7 @@ export default function ListTable() {
               </td>
               <td className={styles.left}>
                 <Member
+                  userId={post.mb_id}
                   nickname={post.wr_name || post.name}
                   level={post.mb_level}
                   width={22}

@@ -32,7 +32,15 @@ export default function QaComment({ comment }: IProps) {
             />
           </span>
           <div className={styles.userInfo}>
-            <Member nickname={comment?.name} level={comment?.mb_level} width={22} height={22} modalTop={22} modalLeft={0} />
+            <Member
+              userId={comment?.mb_id}
+              nickname={comment?.name}
+              level={comment?.mb_level}
+              width={22}
+              height={22}
+              modalTop={22}
+              modalLeft={0}
+            />
             <p>{ comment?.date }</p>
           </div>
         </div>
@@ -75,7 +83,15 @@ export default function QaComment({ comment }: IProps) {
                     />
                   </span>
                   <div className={styles.userInfo}>
-                    <Member nickname={reply.name} level={reply.mb_level} width={22} height={22} modalTop={22} modalLeft={0} />
+                    <Member
+                      userId={reply.mb_id}
+                      nickname={reply.name}
+                      level={reply.mb_level}
+                      width={22}
+                      height={22}
+                      modalTop={22}
+                      modalLeft={0}
+                    />
                     <p>{ reply.date }</p>
                   </div>
                 </div>
