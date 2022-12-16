@@ -15,3 +15,8 @@ export interface GetViewPostParams {
 export interface GetViewUserInfoParams {
   mb_id: string | string[] | undefined,
 }
+
+export interface GetViewUserWriteDataParams {
+  mb_id: string | string[] | undefined,
+  page: string | string[] | undefined,
+}

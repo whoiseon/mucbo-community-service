@@ -108,19 +108,19 @@ export const headerMenus = [
         path: '/games/valorant'
       },
       {
-        name: '던전앤파이터',
+        name: '던파',
         board: 'games',
         table: 'df',
         path: '/games/df'
       },
       {
-        name: '리그오브레전드',
+        name: '롤',
         board: 'games',
         table: 'lol',
         path: '/games/lol'
       },
       {
-        name: '메이플스토리',
+        name: '메이플',
         board: 'games',
         table: 'maple_story',
         path: '/games/maple_story'

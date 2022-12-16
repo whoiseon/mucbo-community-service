@@ -1,12 +1,19 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
-import {GetPostsAllPrams, GetPostsByTable, GetViewPostParams, GetViewUserInfoParams} from "../types/thunk";
+import {
+  GetPostsAllPrams,
+  GetPostsByTable,
+  GetViewPostParams,
+  GetViewUserInfoParams,
+  GetViewUserWriteDataParams
+} from "../types/thunk";
 
 const initialState: PostState = {
   posts: null,
   viewPost: null,
   viewUserInfo: null,
+  viewUserWritePost: null,
   getPostsAllLoading: false,
   getPostsAllDone: false,
   getPostsAllError: null,
@@ -19,6 +26,9 @@ const initialState: PostState = {
   getViewUserInfoLoading: false,
   getViewUserInfoDone: false,
   getViewUserInfoError: null,
+  getViewUserWriteDataLoading: false,
+  getViewUserWriteDataDone: false,
+  getViewUserWriteDataError: null,
 }
 
 export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page }: GetPostsAllPrams) => {
@@ -79,6 +89,22 @@ export const getViewUserInfo = createAsyncThunk('post/GET_VIEW_USER_INFO', async
     throw error;
   }
 });
+
+export const getViewUserWriteData = createAsyncThunk('post/GET_VIEW_USER_WRITE_DATA', async ({ mb_id, page }: GetViewUserWriteDataParams) => {
+  try {
+    const response = await axios.post(`https://cheatdot.com/api/v1/user/api.php`, {
+      cmd: "get_write_data",
+      data: {
+        mb_id,
+        page,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+})
 
 export const postSlice = createSlice({
   name: 'post',
@@ -145,6 +171,21 @@ export const postSlice = createSlice({
         state.getViewUserInfoLoading = false;
         state.getViewUserInfoDone = false;
         state.getViewUserInfoError = action.error;
+      })
+      .addCase(getViewUserWriteData.pending, (state) => {
+        state.getViewUserWriteDataLoading = true;
+        state.getViewUserWriteDataDone = false;
+        state.getViewUserWriteDataError = null;
+      })
+      .addCase(getViewUserWriteData.fulfilled, (state, action) => {
+        state.getViewUserWriteDataLoading = false;
+        state.getViewUserWriteDataDone = true;
+        state.viewUserWritePost = action.payload;
+      })
+      .addCase(getViewUserWriteData.rejected, (state, action) => {
+        state.getViewUserWriteDataLoading = false;
+        state.getViewUserWriteDataDone = false;
+        state.getViewUserWriteDataError = action.error;
       })
   }
 });

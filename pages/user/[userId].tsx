@@ -2,10 +2,10 @@ import {GetServerSideProps, NextPage} from "next";
 import {wrapper} from "../../store";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
-import {getViewUserInfo} from "../../store/slices/postSlice";
+import {getViewUserInfo, getViewUserWriteData} from "../../store/slices/postSlice";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
-import PCBoard from "../../components/pc/Board";
+import PCBoardByUser from "../../components/pc/BoardByUser";
 import Head from "next/head";
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
 
 const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoard />
+    return isMobile ? <MobileRoot /> : <PCBoardByUser />
   }, []);
 
   return (
@@ -44,7 +44,12 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
 
   await store.dispatch(getViewUserInfo({
     mb_id: decodeURIComponent(query.userId as string),
-  }))
+  }));
+
+  await store.dispatch(getViewUserWriteData({
+    mb_id: decodeURIComponent(query.userId as string),
+    page: query.page || '1'
+  }));
 
   return {
     props: {

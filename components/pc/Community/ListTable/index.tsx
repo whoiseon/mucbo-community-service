@@ -1,59 +1,70 @@
 import styles from "./ListTable.module.scss";
-import {useSelector} from "react-redux";
-import {RootState} from "../../../../store/reducers";
 import Member from "../../../common/Member";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {useQuery} from "react-query";
-import {getPost} from "../../../../apis/post";
+import {useCallback} from "react";
+import {BoardType, ViewUserWriteDataType} from "../../../../types/board";
 
-export default function ListTable() {
-  const { posts } = useSelector((state: RootState) => state.post);
+interface ListTableProps {
+  data: BoardType | ViewUserWriteDataType | null
+}
 
+export default function ListTable({ data }: ListTableProps) {
   const router = useRouter();
+
+  const isUserInfoPage = router.pathname.split('/')[1] === 'user'
+
+  const handleLongTagNameToShort = useCallback((tag: string) => {
+    switch (tag) {
+      case "메이플스토리":
+        return "메이플"
+      case "던전앤파이터":
+        return "던파"
+      case "피해사례 공유":
+        return "피해사례"
+      case "배틀그라운드":
+        return "배그"
+      case "리그오브레전드":
+        return "롤"
+      default:
+        return tag
+    }
+  }, []);
 
   return (
     <table className={styles.table}>
       <colgroup>
         <col style={{ width: '10%' }} />
-        <col style={{ width: '50%' }} />
-        <col style={{ width: '20%' }} />
-        <col style={{ width: '10%' }} />
-        <col style={{ width: '10%' }} />
+        {isUserInfoPage ? <col style={{width: '60%'}} /> : <col style={{width: '50%'}}/>}
+        {!isUserInfoPage && <col style={{width: '20%'}}/>}
+        {isUserInfoPage ? <col style={{width: '15%'}} /> : <col style={{width: '10%'}}/>}
+        {isUserInfoPage ? <col style={{width: '15%'}} /> : <col style={{width: '10%'}}/>}
       </colgroup>
       <thead>
       <tr>
         <th> </th>
         <th>제목</th>
-        <th className={styles.left}>작성자</th>
+        {!isUserInfoPage && <th className={styles.left}>작성자</th>}
         <th>작성일</th>
         <th>조회</th>
       </tr>
       </thead>
       <tbody>
       {
-        posts?.message.result.list?.map((post: any, idx: number) => {
-          const tag = post.bo_subject === '메이플스토리'
-            ? post.bo_subject.substring(0, 3)
-            : post.bo_subject === '배틀그라운드'
-              ? '배그'
-              : post.bo_subject === '피해사례 공유'
-                ? '피해사례'
-                : post.bo_subject
-
+        data?.message.result.list?.map((post: any, idx: number) => {
           return (
             <tr key={post.wr_id} className={ post.is_notice ? styles.notice : '' }>
               <td>
                 {
                   post.is_notice
                     ? <span className={styles.isNotice}>공지</span>
-                    : tag || post.num
+                    : handleLongTagNameToShort(post.bo_subject) || post.num
                 }
               </td>
               <td className={styles.left}>
                 <div className={styles.subjectContent}>
                   {
-                    router.query.board === 'board' && router.query.table === 'all'
+                    router.query.board === 'board' && router.query.table === 'all' || isUserInfoPage
                       ? (
                         <Link href={`/${post.gr_id}/${post.bo_table}/${post.wr_id}`}>
                           {post.subject}
@@ -81,17 +92,21 @@ export default function ListTable() {
                   }
                 </div>
               </td>
-              <td className={styles.left}>
-                <Member
-                  userId={post.mb_id}
-                  nickname={post.wr_name || post.name}
-                  level={post.mb_level}
-                  width={22}
-                  height={22}
-                  modalTop={44}
-                  modalLeft={0}
-                />
-              </td>
+              {
+                !isUserInfoPage && (
+                  <td className={styles.left}>
+                    <Member
+                      userId={post.mb_id}
+                      nickname={post.wr_name || post.name}
+                      level={post.mb_level}
+                      width={22}
+                      height={22}
+                      modalTop={44}
+                      modalLeft={0}
+                    />
+                  </td>
+                )
+              }
               <td>{post.datetime2}</td>
               <td>{post.wr_hit}</td>
             </tr>

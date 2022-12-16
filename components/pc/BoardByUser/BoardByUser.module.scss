@@ -1,0 +1,91 @@
+@charset "UTF-8";
+@import '../../../styles/common/variables';
+@import '../../../styles/common/placeholders';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .header {
+    @extend .white-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+
+      .profile {
+        border-radius: 50%;
+        margin-right: 20px;
+      }
+
+      .user {
+        display: flex;
+        flex-direction: column;
+
+        .nickname {
+          display: flex;
+          align-items: center;
+          margin-bottom: 10px;
+
+          span {
+            font-size: $G-font-size-h5;
+            font-weight: 500;
+            padding-bottom: 2px;
+          }
+
+          .level {
+            margin-right: 6px;
+          }
+        }
+      }
+
+      .detail {
+        display: flex;
+        gap: 0 10px;
+
+        span {
+          color: $G-color-gray-extra;
+
+          i {
+            font-style: normal;
+            font-weight: bold;
+            color: $G-color-black-extra;
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+
+    .tab {
+      display: flex;
+      align-items: center;
+
+      a {
+        background-color: $G-color-black-semi;
+        color: $G-color-white-extra;
+
+        &:hover {
+          background-color: $G-color-black-medium;
+        }
+
+        &:active {
+          background-color: $G-color-black-semi;
+        }
+      }
+    }
+  }
+
+  .content {
+    @extend .white-box;
+
+    width: 100%;
+    height: auto;
+  }
+}

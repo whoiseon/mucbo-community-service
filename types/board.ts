@@ -42,3 +42,18 @@ export interface ViewUserType {
     },
   }
 }
+
+export interface ViewUserWriteDataType {
+  error: {
+    msg: string,
+    code: number
+  },
+  message: {
+    result: {
+      list: {
+        [key: string]: string | number | boolean | { count: number }
+      }[],
+      total_count: number,
+    },
+  }
+}
