@@ -7,12 +7,16 @@ import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import PCBoardByUser from "../../components/pc/BoardByUser";
 import Head from "next/head";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/reducers";
 
 interface IProps {
   isMobile: boolean,
 }
 
 const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
+  const { viewUserInfo } = useSelector((state: RootState) => state.post);
+
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
     return isMobile ? <MobileRoot /> : <PCBoardByUser />
   }, []);
@@ -20,7 +24,7 @@ const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
   return (
     <>
       <Head>
-        <title>유저정보</title>
+        <title>{ viewUserInfo?.message.result.mb_nick }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
@@ -50,6 +54,14 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
     mb_id: decodeURIComponent(query.userId as string),
     page: query.page || '1'
   }));
+
+  const getState = store.getState().post;
+
+  if (getState.viewUserInfo?.error.msg) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
