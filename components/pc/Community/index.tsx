@@ -32,6 +32,34 @@ export default function Community() {
     return 'Title - error'
   }, [posts?.message.result.title]);
 
+  const handleBoardQuarter = () => {
+    if (router.pathname === '/qa') {
+      return (
+        <div className={styles.qaContent}>
+          <QaTable />
+        </div>
+      )
+    } else if (router.query.table === 'photo') {
+      return (
+        <div>
+          photo
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.content}>
+        <ListTable data={posts} />
+        <Pagination
+          totalPage={totalPage}
+          limit={10}
+          page={page}
+          setPage={setPage}
+        />
+      </div>
+    )
+  };
+
   useEffect(() => {
     if (router.query.page) {
       setPage(Number(router.query.page));
@@ -98,23 +126,7 @@ export default function Community() {
         }
       </div>
       {
-        router.pathname !== '/qa'
-          ? (
-            <div className={styles.content}>
-              <ListTable data={posts} />
-              <Pagination
-                totalPage={totalPage}
-                limit={10}
-                page={page}
-                setPage={setPage}
-              />
-            </div>
-          )
-          : (
-            <div className={styles.qaContent}>
-              <QaTable />
-            </div>
-          )
+        handleBoardQuarter()
       }
     </div>
   );
