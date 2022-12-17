@@ -25,6 +25,8 @@ const BoardAllPage: NextPage<IProps> = ({ isMobile }) => {
     return isMobile ? <MobileRoot /> : <PCBoard />
   }, []);
 
+  console.log(isMobile);
+
   return (
     <>
       <Head>

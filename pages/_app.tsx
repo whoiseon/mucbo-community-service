@@ -29,11 +29,15 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
   return (
     isMobile
       ? (
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       )
       : router.pathname === '/login' || router.pathname === '/signup' || router.pathname === '/404'
         ? (
-          <Component {...pageProps} />
+          <Provider store={store}>
+            <Component {...pageProps} />
+          </Provider>
         )
         : (
           <Provider store={store}>
