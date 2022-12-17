@@ -65,6 +65,13 @@
         p {
           line-height: 22px;
         }
+        img:first-of-type {
+          margin: 0 0 20px;
+        }
+
+        img {
+          margin: 20px 0;
+        }
       }
 
       .hashList {

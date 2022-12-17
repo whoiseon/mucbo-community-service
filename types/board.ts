@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import {Key, ReactNode} from "react";
 
 export interface BoardType {
   error: {
@@ -8,7 +8,8 @@ export interface BoardType {
   message: {
     result: {
       list: {
-        [key: string]: string | number | boolean | { count: number }
+        [key: string]: string | number | boolean | Key | null
+          | { count: number } | { thumb: { [key: string]: string } }
       }[],
       total_count: number,
       title: string

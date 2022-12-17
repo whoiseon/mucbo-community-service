@@ -9,6 +9,7 @@ import useInput from "../../../hooks/useInput";
 import { headerMenus } from "../../../data/menus";
 import Link from "next/link";
 import QaTable from "./QaTable";
+import PhotoTable from "./PhotoTable";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
@@ -41,8 +42,14 @@ export default function Community() {
       )
     } else if (router.query.table === 'photo') {
       return (
-        <div>
-          photo
+        <div className={styles.photoContent}>
+          <PhotoTable />
+          <Pagination
+            totalPage={totalPage}
+            limit={10}
+            page={page}
+            setPage={setPage}
+          />
         </div>
       );
     }

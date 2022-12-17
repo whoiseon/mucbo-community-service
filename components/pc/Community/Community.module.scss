@@ -106,4 +106,12 @@
     width: 100%;
     height: auto;
   }
+
+  .photoContent {
+    @extend .white-box;
+
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
 }

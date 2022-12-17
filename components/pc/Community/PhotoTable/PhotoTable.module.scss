@@ -1,0 +1,81 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px 20px;
+
+  li {
+    display: flex;
+    flex-direction: column;
+
+    & > a {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        transition: transform 0.16s ease-in;
+
+        &:hover {
+          transform: scale(1.04);
+        }
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+
+      .title {
+        width: 100%;
+        margin-bottom: 10px;
+
+        & > a {
+          display: inline-block;
+          width: 100%;
+          height: 38px;
+
+          span {
+            word-break: normal;
+            font-weight: 500;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      .user {
+        position: relative;
+        width: 100%;
+        margin-bottom: 6px;
+
+        button {
+          span {
+            font-weight: 500;
+          }
+        }
+      }
+
+      .date {
+        font-size: $G-font-size-h7;
+        color: $G-color-gray-medium;
+
+        .contour {
+          margin: 0 6px;
+          color: $G-color-gray-light;
+        }
+      }
+    }
+  }
+}
