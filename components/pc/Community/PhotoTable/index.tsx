@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../../store/reducers";
 import Link from "next/link";
 import {useRouter} from "next/router";
-import Image from "next/image";
 import Member from "../../../common/Member";
 import React from "react";
 
@@ -17,12 +16,11 @@ export default function PhotoTable() {
     <ul className={styles.wrapper}>
       {
         photoData?.map((list: any, i) => {
-          console.log(list);
           return (
-            <li key={list.wr_id as number}>
+            <li key={list.wr_id}>
               <Link href={`${router.asPath}/${list.wr_id}`}>
                 <a>
-                  <img src={list.thumb.src} alt={list.thumb.alt} />
+                  <img src={list?.thumb?.src} alt={list?.thumb?.alt} />
                 </a>
               </Link>
               <div className={styles.info}>
