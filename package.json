@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^35.4.0",
+    "@ckeditor/ckeditor5-react": "^5.0.3",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/crypto-js": "^4.1.1",
     "@types/redux-logger": "^3.0.9",

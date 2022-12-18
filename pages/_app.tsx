@@ -27,25 +27,27 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
   const router = useRouter();
 
   return (
-    isMobile
-      ? (
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      )
-      : router.pathname === '/login' || router.pathname === '/signup' || router.pathname === '/404'
-        ? (
-          <Provider store={store}>
+    <Provider store={store}>
+      {
+        isMobile
+          ? (
             <Component {...pageProps} />
-          </Provider>
-        )
-        : (
-          <Provider store={store}>
-            <PCLayout>
-              <Component {...props.pageProps} />
-            </PCLayout>
-          </Provider>
-        )
+          )
+          : router.pathname === '/login' || router.pathname === '/signup' || router.pathname === '/404'
+            ? (
+              <Provider store={store}>
+                <Component {...pageProps} />
+              </Provider>
+            )
+            : (
+              <Provider store={store}>
+                <PCLayout>
+                  <Component {...props.pageProps} />
+                </PCLayout>
+              </Provider>
+            )
+      }
+    </Provider>
   )
 };
 
