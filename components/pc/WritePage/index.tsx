@@ -1,26 +1,15 @@
-import Editor from "../Editor";
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("../Editor"), { ssr: false });
 
 export default function WritePage() {
-  const [editorLoaded, setEditorLoaded] = useState(false);
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    setEditorLoaded(true);
-  }, []);
+  const [value, setValue] = useState("");
 
   return (
     <div>
-      <h1>CKEditor 5</h1>
-      <Editor
-        name="write"
-        onChange={(data: any) => {
-          setData(data)
-        }}
-        value={data}
-        editorLoaded={editorLoaded}
-      />
-      {JSON.stringify(data)}
+      <h1>TUI EDITOR</h1>
+      <Editor value={value} setValue={setValue} />
     </div>
   );
 };
