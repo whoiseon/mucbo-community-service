@@ -67,3 +67,52 @@ textarea {
     color: $G-color-gray-medium;
   }
 }
+
+// Editor Custom
+
+.toastui-editor-defaultUI-toolbar {
+  padding: 10px 16px !important;
+  background-color: $G-color-white-extra !important;
+  border-radius: 6px 6px 0 0 !important;
+  border: none !important;
+
+  .toastui-editor-toolbar-group {
+    align-items: center;
+  }
+
+  button {
+    margin: 0 10px 0 0 !important;
+    border: none !important;
+    border-radius: 6px !important;
+    transition: background-color 0.12s ease-in;
+
+    &:hover {
+      background-color: $G-color-white-hover !important;
+    }
+  }
+}
+
+.toastui-editor-defaultUI {
+  border: none !important;
+
+  .ProseMirror {
+    padding: 20px !important;
+  }
+}
+
+.toastui-editor-ww-container {
+  border-radius: 0 0 6px 6px;
+
+  .toastui-editor-contents {
+    border-radius: 0 0 6px 6px !important;
+    font-family: $G-font-family-base;
+
+    p {
+      font-size: 14px;
+    }
+
+    h1 {
+      border-bottom: none;
+    }
+  }
+}

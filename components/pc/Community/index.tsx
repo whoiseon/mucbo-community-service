@@ -10,6 +10,7 @@ import { headerMenus } from "../../../data/menus";
 import Link from "next/link";
 import QaTable from "./QaTable";
 import PhotoTable from "./PhotoTable";
+import Button from "../../common/Button";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
@@ -103,6 +104,15 @@ export default function Community() {
                       placeholder="검색어를 입력해주세요"
                     />
                     <img src="/image/icon/search-icon.svg" alt="search-icon" />
+                  </div>
+                  <div className={styles.writeBox}>
+                    <Button
+                      type="primary"
+                      afterImg="/image/icon/write-icon.svg"
+                      path={`${router.asPath}/write`}
+                    >
+                      글쓰기
+                    </Button>
                   </div>
                 </div>
               )

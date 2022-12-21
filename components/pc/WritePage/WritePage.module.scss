@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.wrapper {
+  min-height: 880px;
+
+  .subjectInput {
+    position: relative;
+    margin-bottom: 20px;
+
+    input {
+      @extend .white-box;
+
+      border: none;
+      width: 100%;
+      padding: 20px 104px 20px 20px;
+      font-size: $G-font-size-h3;
+    }
+
+    button {
+      position: absolute;
+      top: 14px;
+      right: 20px;
+      padding: 9px 20px 8px;
+    }
+  }
+
+  .qaHashTags {
+    margin-bottom: 20px;
+
+    input {
+      @extend .white-box;
+
+      border: none;
+      width: 100%;
+      padding: 20px 104px 20px 20px;
+      font-size: $G-font-size-h3;
+    }
+  }
+}
