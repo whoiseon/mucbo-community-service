@@ -4,12 +4,12 @@ import type { AppProps } from 'next/app';
 import {GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
-import PCLayout from "../components/pc/Layout";
 import {wrapper} from "../store";
 import {useRouter} from "next/router";
-import {useRef} from "react";
-import {QueryClient, QueryClientProvider} from "react-query";
 import {Provider} from "react-redux";
+
+import PCLayout from "../components/pc/Layout";
+import MobileLayout from "../components/mobile/Layout";
 
 interface IProps {
   isMobile: boolean,
@@ -18,12 +18,6 @@ interface IProps {
 const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProps>) => {
   const {store, props} = wrapper.useWrappedStore(pageProps);
 
-  const queryClientRef = useRef<QueryClient>();
-
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
-
   const router = useRouter();
 
   return (
@@ -31,20 +25,18 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
       {
         isMobile
           ? (
-            <Component {...pageProps} />
+            <MobileLayout>
+              <Component {...pageProps} />
+            </MobileLayout>
           )
           : router.pathname === '/login' || router.pathname === '/signup' || router.pathname === '/404'
             ? (
-              <Provider store={store}>
-                <Component {...pageProps} />
-              </Provider>
+              <Component {...pageProps} />
             )
             : (
-              <Provider store={store}>
-                <PCLayout>
-                  <Component {...props.pageProps} />
-                </PCLayout>
-              </Provider>
+              <PCLayout>
+                <Component {...props.pageProps} />
+              </PCLayout>
             )
       }
     </Provider>

@@ -6,6 +6,7 @@ import {
 import { ReducerStates } from "../types/state";
 import {HYDRATE} from "next-redux-wrapper";
 import postSlice from "../slices/postSlice";
+import userSlice from "../slices/userSlice";
 
 const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<ReducerStates> => {
   switch (action.type) {
@@ -14,6 +15,7 @@ const rootReducer = (state: ReducerStates, action: AnyAction): CombinedState<Red
 
     default: {
       const combinedReducer = combineReducers({
+        user: userSlice.reducer,
         post: postSlice.reducer,
       });
 

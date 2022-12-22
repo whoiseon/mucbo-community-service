@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 42px;
+  background-color: $G-color-white-extra;
+
+  .profile {
+    padding: 0 16px;
+  }
+
+  .logo {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 0;
+
+    .logoIcon {
+      margin-right: 6px;
+    }
+
+    span {
+      font-size: $G-font-size-h5;
+      font-weight: bold;
+    }
+  }
+
+  .search {
+    margin-left: auto;
+    padding: 0 16px;
+    opacity: 0.5;
+  }
+}
+
+.main {
+
+}

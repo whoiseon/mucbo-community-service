@@ -1,0 +1,30 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  padding: 14px 0 24px;
+
+  .icon {
+    margin-bottom: 6px;
+  }
+
+  span {
+    color: $G-color-black-medium;
+    font-weight: 500;
+  }
+
+  &:active {
+    background-color: $G-color-white-extra;
+  }
+}
+
+.active {
+  opacity: 1;
+}

@@ -179,3 +179,30 @@ export const footerMap = [
     ]
   },
 ]
+
+export const mobileFooterMenus = [
+  {
+    name: '커뮤니티',
+    board: 'community',
+    path: '/community/free',
+    icon: '/image/icon/community-icon.svg'
+  },
+  {
+    name: '게임들',
+    board: 'games',
+    path: '/games/sudden_attack',
+    icon: '/image/icon/games-icon.svg',
+  },
+  {
+    name: 'Q&A',
+    board: 'qa',
+    path: '/qa',
+    icon: '/image/icon/qa-icon.svg',
+  },
+  {
+    name: '설정',
+    board: 'config',
+    path: '',
+    icon: '/image/icon/config-icon.svg',
+  }
+]

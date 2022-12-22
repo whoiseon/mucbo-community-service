@@ -1,12 +1,12 @@
 import type {GetServerSideProps, NextPage} from 'next'
 import Head from 'next/head'
-import styles from '../styles/pc.module.scss'
 import MobileDetect from "mobile-detect";
 import { isMobile } from "react-device-detect";
 import {useCallback} from "react";
 
 import PCRoot from "../components/pc/Root";
 import MobileRoot from "../components/mobile/Root";
+import {wrapper} from "../store";
 
 interface IProps {
   isMobile: boolean,
@@ -30,11 +30,11 @@ const Home: NextPage<IProps> = ({ isMobile }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(store => async ({req, res, query}) => {
   let mobile;
 
-  if (context.req) {
-    const md = new MobileDetect(context.req.headers['user-agent'] as string);
+  if (req) {
+    const md = new MobileDetect(req.headers['user-agent'] as string);
     mobile = !!md.mobile();
   } else {
     mobile = isMobile;
@@ -49,6 +49,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       destination: "/board/all"
     }
   }
-}
+});
 
 export default Home;

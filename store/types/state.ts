@@ -28,6 +28,14 @@ export interface PostState {
   getViewUserWriteDataError: string | null | SerializedError,
 }
 
+export interface UserState {
+  session: string | null,
+  getUserSessionLoading: boolean,
+  getUserSessionDone: boolean,
+  getUserSessionError: string | null | SerializedError,
+}
+
 export interface ReducerStates {
   post: PostState,
+  user: UserState,
 }
