@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.headerGlobal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 46px;
+  background-color: $G-color-main;
+  color: $G-color-white-extra;
+  z-index: 100;
+
+  nav {
+    width: 100%;
+    height: 100%;
+
+    ul {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none
+      }
+
+      li {
+        a {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          min-height: 46px;
+          font-size: $G-font-size-h5;
+          font-weight: 500;
+          white-space: nowrap;
+          padding: 0 14px;
+        }
+      }
+    }
+  }
+}

@@ -40,5 +40,13 @@
 }
 
 .main {
-
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: $G-color-white-extra;
+  overflow: hidden scroll;
+  padding: 66px 20px 86px;
 }

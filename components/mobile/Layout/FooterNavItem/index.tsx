@@ -22,8 +22,8 @@ export default function FooterNavItem({ name, path, board, icon }: FooterNavItem
           <Image
             src={icon}
             alt="footerIcon"
-            width={20}
-            height={20}
+            width={18}
+            height={18}
           />
         </div>
         <span>{ name }</span>
@@ -36,8 +36,8 @@ export default function FooterNavItem({ name, path, board, icon }: FooterNavItem
             <Image
               src={icon}
               alt="footerIcon"
-              width={20}
-              height={20}
+              width={18}
+              height={18}
             />
           </div>
           <span>{ name }</span>
