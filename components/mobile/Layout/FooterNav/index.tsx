@@ -9,6 +9,7 @@ export default function FooterNav() {
         mobileFooterMenus.map((menu, i) => {
           return (
             <FooterNavItem
+              key={menu.name}
               name={menu.name}
               board={menu.board}
               path={menu.path}

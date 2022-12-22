@@ -28,13 +28,13 @@ export default function Editor({ value, setValue, height }: EditorProps) {
     ['scrollSync']
   ];
 
-  const onChangeEditor = useCallback(() => {
+  const onChangeEditor = () => {
     const data = editorRef.current?.getInstance().getHTML();
 
     if (data) {
       setValue(data);
     }
-  }, []);
+  };
 
   return (
     <div className={styles.editor}>
