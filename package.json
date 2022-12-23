@@ -16,6 +16,7 @@
     "@types/redux-logger": "^3.0.9",
     "axios": "^0.27.2",
     "babel-plugin-inline-react-svg": "^2.0.1",
+    "cookies-next": "^2.1.1",
     "crypto-js": "^4.1.1",
     "iconv-lite": "^0.6.3",
     "mobile-detect": "^1.4.5",

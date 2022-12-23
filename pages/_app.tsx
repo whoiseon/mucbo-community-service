@@ -10,6 +10,7 @@ import {Provider} from "react-redux";
 
 import PCLayout from "../components/pc/Layout";
 import MobileLayout from "../components/mobile/Layout";
+import {setCookie} from "cookies-next";
 
 interface IProps {
   isMobile: boolean,
@@ -44,6 +45,8 @@ const MyApp = ({ Component, pageProps, pageProps: { isMobile } }: AppProps<IProp
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req, res } = context;
+
   let mobile;
 
   if (context.req) {

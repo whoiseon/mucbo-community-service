@@ -120,7 +120,7 @@ export default function Community() {
           }
         </div>
         {
-          subMenus?.subTable
+          subMenus?.subTable && !(router.query.board === 'board' || router.pathname === '/qa')
             ? (
               <div className={styles.headerMenus}>
                 {

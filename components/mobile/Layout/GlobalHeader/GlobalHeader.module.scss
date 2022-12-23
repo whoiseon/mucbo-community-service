@@ -28,7 +28,7 @@
       }
 
       li {
-        a {
+        .menuBtn {
           display: flex;
           align-items: center;
           width: 100%;
@@ -37,6 +37,12 @@
           font-weight: 500;
           white-space: nowrap;
           padding: 0 14px;
+          opacity: 0.5;
+        }
+
+        .menuActive {
+          opacity: 1;
+          font-weight: bold;
         }
       }
     }

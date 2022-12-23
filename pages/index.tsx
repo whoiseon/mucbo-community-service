@@ -7,6 +7,8 @@ import {useCallback} from "react";
 import PCRoot from "../components/pc/Root";
 import MobileRoot from "../components/mobile/Root";
 import {wrapper} from "../store";
+import {getCookies, setCookie} from "cookies-next";
+import axios from "axios";
 
 interface IProps {
   isMobile: boolean,
@@ -39,6 +41,20 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   } else {
     mobile = isMobile;
   }
+
+  const cookies = getCookies({ req, res });
+
+  const response = await axios.post('https://cheatdot.com/api/v1/api.php', {
+    cmd: 'session'
+  });
+
+  const session = response.data.message.result
+
+  if (!cookies["PHPSSEID"]) {
+    setCookie('PHPSSEID', session, { req, res, maxAge: 60 * 6 * 24 });
+  }
+
+  console.log(getCookies({ req, res }));
 
   return {
     props: {

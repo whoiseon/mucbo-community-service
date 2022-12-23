@@ -11,4 +11,36 @@
   width: 100%;
   z-index: 999;
   background-color: $G-color-white-extra;
+
+  .configButton {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    padding: 12px 0;
+
+    .icon {
+      margin-bottom: 6px;
+    }
+
+    span {
+      color: $G-color-black-medium;
+      font-weight: 500;
+      font-size: $G-font-size-h7;
+    }
+
+    &:active {
+      background-color: $G-color-white-extra;
+    }
+  }
+
+  .active {
+    opacity: 1;
+
+    span {
+      font-weight: bold;
+    }
+  }
 }

@@ -6,7 +6,18 @@ import Link from "next/link";
 export default function GlobalHeader() {
   const router = useRouter();
 
-  const subMenus = headerMenus.find((v) => v.board === router.query.board)
+  const subMenus = headerMenus.find((v) => v.board === router.query.board);
+
+  const handleEmpty = (board: string) => {
+    switch (board) {
+      case "/qa":
+        return "Q&A"
+      case "/board/all":
+        return "전체글보기"
+      default:
+        return ""
+    }
+  }
 
   return (
     <header className={styles.headerGlobal}>
@@ -16,6 +27,7 @@ export default function GlobalHeader() {
             subMenus?.subTable
               ? (
                 subMenus?.subTable.map((table, i) => {
+                  console.log(table);
                   const asPath = `/${router.query.board}/${router.query.table}`
                   const isActive = asPath === table.path ? `${styles.menuBtn} ${styles.menuActive}` : styles.menuBtn
 
@@ -30,7 +42,17 @@ export default function GlobalHeader() {
                   )
                 })
               )
-              : null
+              : (
+                <li>
+                  <Link href="#">
+                    <a className={`${styles.menuBtn} ${styles.menuActive}`}>
+                      {
+                        handleEmpty(router.asPath.split('?')[0])
+                      }
+                    </a>
+                  </Link>
+                </li>
+              )
           }
         </ul>
       </nav>

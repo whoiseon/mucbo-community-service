@@ -142,7 +142,15 @@ export const headerMenus = [
   {
     name: 'Q&A',
     board: 'qa',
-    path: '/qa'
+    path: '/qa',
+    subTable: [
+      {
+        name: 'Q&A',
+        board: 'qa',
+        table: 'qa',
+        path: '/qa'
+      }
+    ]
   }
 ];
 
@@ -182,6 +190,12 @@ export const footerMap = [
 
 export const mobileFooterMenus = [
   {
+    name: '홈',
+    board: 'board',
+    path: '/board/all',
+    icon: '/image/icon/home-icon.svg'
+  },
+  {
     name: '커뮤니티',
     board: 'community',
     path: '/community/free',
@@ -199,10 +213,4 @@ export const mobileFooterMenus = [
     path: '/qa',
     icon: '/image/icon/qa-icon.svg',
   },
-  {
-    name: '설정',
-    board: 'config',
-    path: '',
-    icon: '/image/icon/config-icon.svg',
-  }
 ]

@@ -15,9 +15,9 @@ export default function FooterNavItem({ name, path, board, icon }: FooterNavItem
 
   const isActive = router.asPath.includes(board) ? styles.active : '';
 
-  return board === 'config'
-    ? (
-      <button className={styles.wrapper}>
+  return (
+    <Link href={path}>
+      <a className={`${styles.wrapper} ${isActive}`}>
         <div className={styles.icon}>
           <Image
             src={icon}
@@ -27,21 +27,7 @@ export default function FooterNavItem({ name, path, board, icon }: FooterNavItem
           />
         </div>
         <span>{ name }</span>
-      </button>
-    )
-    : (
-      <Link href={path}>
-        <a className={`${styles.wrapper} ${isActive}`}>
-          <div className={styles.icon}>
-            <Image
-              src={icon}
-              alt="footerIcon"
-              width={18}
-              height={18}
-            />
-          </div>
-          <span>{ name }</span>
-        </a>
-      </Link>
+      </a>
+    </Link>
     )
 };
