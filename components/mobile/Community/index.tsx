@@ -4,9 +4,10 @@ import {RootState} from "../../../store/reducers";
 import {useRouter} from "next/router";
 import useInput from "../../../hooks/useInput";
 import {useEffect, useState} from "react";
-import {headerMenus} from "../../../data/menus";
 import ListBoard from "./ListBoard";
 import Pagination from "./Pagination";
+import QaBoard from "../../mobile/Community/QaBoard";
+import PhotoBoard from "./PhotoBoard";
 
 export default function Community() {
   const { posts } = useSelector((state: RootState) => state.post);
@@ -16,8 +17,37 @@ export default function Community() {
   const [search, onChangeSearch] = useInput('');
   const [page, setPage] = useState<number>(Number(router.query.page) || 1);
 
-  const subMenus = headerMenus.find((v) => v.board === router.query.board)
   const totalPage = posts?.message.result.total_count && Math.ceil(posts?.message.result.total_count / 20);
+
+  const handleBoardQuarter = () => {
+    if (router.pathname === '/qa') {
+      return (
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
+            <QaBoard />
+          </div>
+        </div>
+      )
+    } else if (router.query.table === 'photo') {
+      return (
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
+            <PhotoBoard />
+            <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <div className={styles.wrapper}>
+        <div className={styles.content}>
+          <ListBoard />
+          <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
+        </div>
+      </div>
+    )
+  };
 
   useEffect(() => {
     if (router.query.page) {
@@ -27,12 +57,5 @@ export default function Community() {
     }
   }, [router.query.page])
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>
-        <ListBoard />
-        <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
-      </div>
-    </div>
-  );
+  return handleBoardQuarter();
 };

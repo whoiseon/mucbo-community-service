@@ -16,18 +16,9 @@
         min-width: 0;
         margin-right: 20px;
 
-        .subjectTag {
-          display: inline-block;
-          padding: 4px 8px;
-          background-color: #FFF2E2;
-          color: $G-color-main;
-          font-size: $G-font-size-h7;
-          font-weight: bold;
-          border-radius: 4px;
-          margin-bottom: 8px;
-        }
-
         .subject {
+          margin-top: 8px;
+
           p {
             display: flex;
             align-items: center;
@@ -40,15 +31,10 @@
           }
         }
 
-        .nickname {
-          display: inline-block;
-          margin-top: 8px;
-          font-size: $G-font-size-h6;
-        }
-
         .info {
           margin-top: 6px;
           color: $G-color-gray-medium;
+
           .contour {
             margin: 0 10px;
             color: $G-color-gray-light;
@@ -61,30 +47,20 @@
 
         .comment {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          flex-direction: column;
           width: 40px;
           height: 56px;
-          border-radius: 6px;
-          background-color: $G-background-color-default;
+          gap: 10px 0;
 
-          em {
-            font-style: normal;
-            font-weight: bold;
-          }
-
-          span {
-            font-size: $G-font-size-h7;
-            color: $G-color-gray-medium;
-            margin-top: 4px;
+          p {
+            font-size: $G-font-size-h5;
+            color: $G-color-black-semi;
+            font-weight: 400;
           }
         }
       }
     }
-  }
-
-  .noticeArticle {
-    background-color: $G-background-color-default;
   }
 }

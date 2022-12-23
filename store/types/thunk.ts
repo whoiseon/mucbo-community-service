@@ -1,4 +1,6 @@
-export interface GetPostsAllPrams {
+// Post
+
+export interface GetPostsAllParams {
   page: string | string[] | undefined
 }
 
@@ -19,4 +21,12 @@ export interface GetViewUserInfoParams {
 export interface GetViewUserWriteDataParams {
   mb_id: string | string[] | undefined,
   page: string | string[] | undefined,
+}
+
+// User
+
+export interface MemberLoginParams {
+  id: string,
+  password: string,
+  session: string,
 }

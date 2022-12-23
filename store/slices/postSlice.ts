@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import { PostState } from "../types/state";
 import axios from "axios";
 import {
-  GetPostsAllPrams,
+  GetPostsAllParams,
   GetPostsByTable,
   GetViewPostParams,
   GetViewUserInfoParams,
@@ -31,7 +31,7 @@ const initialState: PostState = {
   getViewUserWriteDataError: null,
 }
 
-export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page }: GetPostsAllPrams) => {
+export const getPostsAll = createAsyncThunk('post/GET_POSTS_ALL', async ({ page }: GetPostsAllParams) => {
   try {
     const response = await axios.get('https://cheatdot.com/api/v1/board/all.php', {
       params: {

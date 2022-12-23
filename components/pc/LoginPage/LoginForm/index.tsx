@@ -3,10 +3,27 @@ import Input from "../../../common/Input";
 import useInput from "../../../../hooks/useInput";
 import Button from "../../../common/Button";
 import Link from "next/link";
+import {getCookies} from "cookies-next";
+import {useCallback} from "react";
+import {useDispatch} from "react-redux";
+import {memberLogin} from "../../../../store/slices/userSlice";
+import {AppDispatch} from "../../../../store";
 
 export default function LoginForm() {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
+
+  // const onClickLogin = useCallback(async () => {
+  //   const session = getCookies()["PHPSESSID"];
+  //
+  //   await dispatch(memberLogin({
+  //     id,
+  //     password,
+  //     session: session || ''
+  //   }));
+  // }, [id, password]);
 
   return (
     <div className={styles.wrapper}>

@@ -3,7 +3,7 @@ import {NextPage, GetServerSideProps} from "next";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {useCallback} from "react";
-import MobileRoot from "../../components/mobile/Root";
+import MobileBoard from "../../components/mobile/Board";
 import PCBoard from "../../components/pc/Board";
 import {wrapper} from "../../store";
 import {getPostsByTable} from "../../store/slices/postSlice";
@@ -21,7 +21,7 @@ const QaPage: NextPage<IProps> = ({ isMobile, title }) => {
   const headTitle = posts?.message.result.title.replace('치트닷컴', '먹보닷컴');
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoard />
+    return isMobile ? <MobileBoard /> : <PCBoard />
   }, []);
 
   return (
@@ -30,11 +30,9 @@ const QaPage: NextPage<IProps> = ({ isMobile, title }) => {
         <title>{ headTitle }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        {
-          handleDeviceDetect(isMobile)
-        }
-      </div>
+      {
+        handleDeviceDetect(isMobile)
+      }
     </>
   );
 };

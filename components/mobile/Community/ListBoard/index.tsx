@@ -11,7 +11,7 @@ export default function ListBoard() {
 
   const { posts } = useSelector((state: RootState) => state.post);
 
-  const isUserInfoPage = router.pathname.split('/')[1] === 'user'
+  const isUserInfoPage = router.pathname.split('/')[1] === 'user';
 
   const handleLongTagNameToShort = useCallback((tag: string) => {
     switch (tag) {
@@ -34,9 +34,10 @@ export default function ListBoard() {
     <div className={styles.wrapper}>
       {
         posts?.message.result.list.map((post: any, i: number) => {
-          console.log(post);
+          const isNoticeStyle = post?.is_notice ? `${styles.noticeArticle}` : ''
+
           return (
-            <article key={post.wr_id} className={styles.article}>
+            <article key={post.wr_id} className={`${styles.article} ${isNoticeStyle}`}>
               <Link href={
                 router.query.board === 'board' && router.query.table === 'all' || isUserInfoPage
                   ? `/${post.gr_id}/${post.bo_table}/${post.wr_id}`
@@ -56,21 +57,27 @@ export default function ListBoard() {
                         {post.subject}
                       </p>
                     </div>
-                    <span className={styles.nickname}>
-                      {post.wr_name || post.name}
-                    </span>
-                    <div className={styles.info}>
-                      <span>{post.datetime2}</span>
-                      <span className={styles.contour}>ˑ</span>
-                      <span>조회 {post.wr_hit}</span>
-                    </div>
+                    {!post?.is_notice && (
+                      <>
+                        <span className={styles.nickname}>
+                          {post.wr_name || post.name}
+                        </span>
+                        <div className={styles.info}>
+                          <span>{post.datetime2}</span>
+                          <span className={styles.contour}>ˑ</span>
+                          <span>조회 {post.wr_hit}</span>
+                        </div>
+                      </>
+                    )}
                   </div>
-                  <div className={styles.listRight}>
-                    <div className={styles.comment}>
-                      <em>{ post.wr_comment }</em>
-                      <span> 댓글 </span>
+                  {!post?.is_notice && (
+                    <div className={styles.listRight}>
+                      <div className={styles.comment}>
+                        <em>{ post.wr_comment }</em>
+                        <span> 댓글 </span>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </a>
               </Link>
             </article>

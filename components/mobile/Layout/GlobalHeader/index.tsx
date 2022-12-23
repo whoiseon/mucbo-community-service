@@ -9,10 +9,11 @@ export default function GlobalHeader() {
   const subMenus = headerMenus.find((v) => v.board === router.query.board);
 
   const handleEmpty = (board: string) => {
-    switch (board) {
-      case "/qa":
+    console.log(board.split('/')[1]);
+    switch (board.split('/')[1]) {
+      case "qa":
         return "Q&A"
-      case "/board/all":
+      case "board":
         return "전체글보기"
       default:
         return ""

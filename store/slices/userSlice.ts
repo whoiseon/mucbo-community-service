@@ -1,21 +1,28 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {UserState} from "../types/state";
 import axios from "axios";
+import {MemberLoginParams} from "../types/thunk";
 
 const initialState: UserState = {
-  session: null,
-  getUserSessionLoading: false,
-  getUserSessionDone: false,
-  getUserSessionError: null,
+  userInfo: null,
+  memberLoginLoading: false,
+  memberLoginDone: false,
+  memberLoginError: null,
 }
 
-export const getUserSession = createAsyncThunk('user/GET_USER_SESSION', async () => {
+export const memberLogin = createAsyncThunk('user/MEMBER_LOGIN', async ({ id, password, session }: MemberLoginParams) => {
   try {
-    const response = await axios.post('https://cheatdot.com/api/v1/api.php', {
-      cmd: 'session'
+    const response = await axios.post('https://cheatdot.com/api/v1/member/login.php', {
+      mb_id: id,
+      mb_password: password
+    }, {
+      withCredentials: true,
+      headers: {
+        Cookie: `PHPSESSID=${session}`
+      }
     });
 
-    return response.data.message.result;
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -27,20 +34,20 @@ export const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getUserSession.pending, (state) => {
-        state.getUserSessionLoading = true;
-        state.getUserSessionDone = false;
-        state.getUserSessionError = null;
+      .addCase(memberLogin.pending, (state) => {
+        state.memberLoginLoading = true;
+        state.memberLoginDone = false;
+        state.memberLoginError = null;
       })
-      .addCase(getUserSession.fulfilled, (state, action) => {
-        state.getUserSessionLoading = false;
-        state.getUserSessionDone = true;
-        state.session = action.payload;
+      .addCase(memberLogin.fulfilled, (state, action) => {
+        state.memberLoginLoading = false;
+        state.memberLoginDone = true;
+        state.userInfo = action.payload;
       })
-      .addCase(getUserSession.rejected, (state, action) => {
-        state.getUserSessionLoading = false;
-        state.getUserSessionDone = false;
-        state.getUserSessionError = action.error;
+      .addCase(memberLogin.rejected, (state, action) => {
+        state.memberLoginLoading = false;
+        state.memberLoginDone = false;
+        state.memberLoginError = action.error;
       })
   }
 });

@@ -50,8 +50,8 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
 
   const session = response.data.message.result
 
-  if (!cookies["PHPSSEID"]) {
-    setCookie('PHPSSEID', session, { req, res, maxAge: 60 * 6 * 24 });
+  if (!cookies["PHPSESSID"]) {
+    setCookie('PHPSESSID', session, { req, res, maxAge: 60 * 6 * 24 });
   }
 
   console.log(getCookies({ req, res }));

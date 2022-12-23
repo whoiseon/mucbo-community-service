@@ -29,10 +29,10 @@ export interface PostState {
 }
 
 export interface UserState {
-  session: string | null,
-  getUserSessionLoading: boolean,
-  getUserSessionDone: boolean,
-  getUserSessionError: string | null | SerializedError,
+  userInfo: string | null,
+  memberLoginLoading: boolean,
+  memberLoginDone: boolean,
+  memberLoginError: string | null | SerializedError,
 }
 
 export interface ReducerStates {
