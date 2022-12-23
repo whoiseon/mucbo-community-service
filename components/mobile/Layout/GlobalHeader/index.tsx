@@ -27,7 +27,6 @@ export default function GlobalHeader() {
             subMenus?.subTable
               ? (
                 subMenus?.subTable.map((table, i) => {
-                  console.log(table);
                   const asPath = `/${router.query.board}/${router.query.table}`
                   const isActive = asPath === table.path ? `${styles.menuBtn} ${styles.menuActive}` : styles.menuBtn
 

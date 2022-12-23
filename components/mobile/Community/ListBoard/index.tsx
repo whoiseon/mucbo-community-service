@@ -34,6 +34,7 @@ export default function ListBoard() {
     <div className={styles.wrapper}>
       {
         posts?.message.result.list.map((post: any, i: number) => {
+          console.log(post);
           return (
             <article key={post.wr_id} className={styles.article}>
               <Link href={
@@ -43,11 +44,20 @@ export default function ListBoard() {
               }>
                 <a>
                   <div className={styles.listLeft}>
+                    { post.bo_subject && (
+                      <span className={styles.subjectTag}>
+                        {
+                          handleLongTagNameToShort(post.bo_subject)
+                        }
+                      </span>
+                    ) }
                     <div className={styles.subject}>
-                      <p>{post.subject}</p>
+                      <p>
+                        {post.subject}
+                      </p>
                     </div>
                     <span className={styles.nickname}>
-                      {post.wr_name}
+                      {post.wr_name || post.name}
                     </span>
                     <div className={styles.info}>
                       <span>{post.datetime2}</span>

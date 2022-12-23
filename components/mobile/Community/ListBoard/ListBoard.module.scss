@@ -18,8 +18,19 @@
         min-width: 0;
         margin-right: 20px;
 
+        .subjectTag {
+          display: inline-block;
+          padding: 4px 8px;
+          background-color: #FFF2E2;
+          color: $G-color-main;
+          border-radius: 4px;
+          margin-bottom: 8px;
+        }
+
         .subject {
           p {
+            display: flex;
+            align-items: center;
             font-size: $G-font-size-h5;
             font-weight: 600;
             max-width: 298px;
@@ -31,7 +42,7 @@
 
         .nickname {
           display: inline-block;
-          margin-top: 10px;
+          margin-top: 8px;
           font-size: $G-font-size-h6;
         }
 
