@@ -11,6 +11,7 @@
   background-color: $G-color-main;
   color: $G-color-white-extra;
   z-index: 100;
+  transition: top .3s ease-in;
 
   nav {
     width: 100%;
@@ -47,4 +48,8 @@
       }
     }
   }
+}
+
+.headerHide {
+  top: -46px;
 }

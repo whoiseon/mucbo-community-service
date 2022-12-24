@@ -2,14 +2,18 @@ import styles from "./GlobalHeader.module.scss";
 import {headerMenus} from "../../../../data/menus";
 import {useRouter} from "next/router";
 import Link from "next/link";
+import {useEffect} from "react";
 
-export default function GlobalHeader() {
+interface GlobalHeaderProps {
+  scrollActive: boolean
+}
+
+export default function GlobalHeader({ scrollActive }: GlobalHeaderProps) {
   const router = useRouter();
 
   const subMenus = headerMenus.find((v) => v.board === router.query.board);
 
   const handleEmpty = (board: string) => {
-    console.log(board.split('/')[1]);
     switch (board.split('/')[1]) {
       case "qa":
         return "Q&A"
@@ -20,8 +24,10 @@ export default function GlobalHeader() {
     }
   }
 
+  const dropAndDownByScroll = scrollActive ? `${styles.headerGlobal} ${styles.headerHide}` : styles.headerGlobal;
+
   return (
-    <header className={styles.headerGlobal}>
+    <header className={dropAndDownByScroll}>
       <nav>
         <ul>
           {
