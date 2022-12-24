@@ -9,6 +9,7 @@ import MobileRoot from "../components/mobile/Root";
 import {wrapper} from "../store";
 import {getCookies, setCookie} from "cookies-next";
 import axios from "axios";
+import {getLoadMyInfo} from "../store/slices/userSlice";
 
 interface IProps {
   isMobile: boolean,
@@ -53,8 +54,6 @@ export const getServerSideProps:GetServerSideProps = wrapper.getServerSideProps(
   if (!cookies["PHPSESSID"]) {
     setCookie('PHPSESSID', session, { req, res, maxAge: 60 * 6 * 24 });
   }
-
-  console.log(getCookies({ req, res }));
 
   return {
     props: {

@@ -23,28 +23,22 @@ export default function Community() {
     if (router.pathname === '/qa') {
       return (
         <div className={styles.wrapper}>
-          <div className={styles.content}>
-            <QaBoard />
-          </div>
+          <QaBoard />
         </div>
       )
     } else if (router.query.table === 'photo') {
       return (
         <div className={styles.wrapper}>
-          <div className={styles.content}>
-            <PhotoBoard />
-            <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
-          </div>
+          <PhotoBoard />
+          <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
         </div>
       );
     }
 
     return (
       <div className={styles.wrapper}>
-        <div className={styles.content}>
-          <ListBoard />
-          <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
-        </div>
+        <ListBoard />
+        <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
       </div>
     )
   };

@@ -2,7 +2,7 @@ import {GetServerSideProps, NextPage} from "next";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store/reducers";
 import {useCallback} from "react";
-import MobileRoot from "../../../../components/mobile/Root";
+import MobileBoard from "../../../../components/mobile/Board";
 import PCBoard from "../../../../components/pc/Board";
 import Head from "next/head";
 import {wrapper} from "../../../../store";
@@ -14,15 +14,17 @@ interface IProps {
   isMobile: boolean,
 }
 
-const View: NextPage<IProps> = () => {
+const View: NextPage<IProps> = ({ isMobile }) => {
   const { viewPost } = useSelector((state: RootState) => state.post);
+
+  console.log()
 
   const headTitle = viewPost?.message.result.title
     ? viewPost?.message.result.title.replace('치트닷컴', '먹보닷컴')
     : ''
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoard />
+    return isMobile ? <MobileBoard /> : <PCBoard />
   }, []);
 
   return (
@@ -31,11 +33,9 @@ const View: NextPage<IProps> = () => {
         <title>{headTitle}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        {
-          handleDeviceDetect(isMobile)
-        }
-      </div>
+      {
+        handleDeviceDetect(isMobile)
+      }
     </>
   );
 };

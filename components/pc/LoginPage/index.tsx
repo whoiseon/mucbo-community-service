@@ -8,7 +8,7 @@ export default function LoginPage() {
     <div className={styles.wrapper}>
       <div className={styles.loginForm}>
         <div className={styles.logo}>
-          <Link href="/board/all">
+          <Link href="/">
             <a>
               <Image
                 src="/image/logo/logo.svg"

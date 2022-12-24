@@ -6,14 +6,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 40px;
-  border-top: 1px solid $G-color-border-table;
+  padding: 16px;
+  border-top: 1px solid $G-color-border-table-bold;
 
   .replyIcon {
     position: absolute;
     z-index: 9999;
     opacity: 0.1;
-    left: 40px
+    left: 16px
   }
 
   .commentInfo {
@@ -53,7 +53,6 @@
 
   .replyBtn {
     margin-left: -10px;
-
     button {
       padding: 6px 10px;
       font-size: 12px;
@@ -64,7 +63,6 @@
 
   .replyForm {
     & > aside {
-      padding: 20px 0;
       border: none;
     }
   }
@@ -72,6 +70,6 @@
 
 .reply {
   background-color: #FAFAFA;
-  padding-left: 86px;
+  padding-left: 50px;
   border-top: 1px solid $G-color-border-table-bold;
 }

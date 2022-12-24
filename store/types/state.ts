@@ -33,6 +33,9 @@ export interface UserState {
   memberLoginLoading: boolean,
   memberLoginDone: boolean,
   memberLoginError: string | null | SerializedError,
+  getLoadMyInfoLoading: boolean,
+  getLoadMyInfoDone: boolean,
+  getLoadMyInfoError: string | null | SerializedError,
 }
 
 export interface ReducerStates {

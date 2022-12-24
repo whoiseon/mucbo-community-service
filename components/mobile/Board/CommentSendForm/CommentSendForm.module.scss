@@ -1,0 +1,38 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.commentSendForm {
+  border-top: 1px solid $G-color-border-table-bold;
+  border-bottom: 1px solid $G-color-border-table-bold;
+  margin-top: 20px;
+
+  .formWrapper {
+    .sendBox {
+      width: 100%;
+      height: 120px;
+      resize: none;
+      border: none;
+      border-radius: 6px 6px 0 0;
+      background-color: $G-background-color-default;
+      padding: 20px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .confirm {
+      display: flex;
+      width: 100%;
+      padding: 20px;
+      border-radius: 0 0 6px 6px;
+      margin-top: -4px;
+      background-color: $G-background-color-default;
+
+      button {
+        margin-left: auto;
+      }
+    }
+  }
+}

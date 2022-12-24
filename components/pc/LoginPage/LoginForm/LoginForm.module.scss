@@ -41,6 +41,13 @@
     }
   }
 
+  .error {
+    width: 100%;
+    p {
+      color: red;
+    }
+  }
+
   .forgot {
     margin-bottom: 20px;
     display: flex;

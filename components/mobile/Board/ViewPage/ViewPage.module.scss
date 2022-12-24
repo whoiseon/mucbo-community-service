@@ -1,0 +1,75 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+
+.article {
+  .header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 16px;
+    border-bottom: 1px solid $G_color-border-table-bold;
+
+    h2 {
+      font-size: $G-font-size-h4;
+      font-weight: 600;
+      line-height: 1.4;
+      -webkit-line-clamp: 3;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      word-break: break-all;
+      margin-bottom: 10px;
+
+      .qaTitle {
+        color: $G-color-sub-blue;
+      }
+    }
+
+    .member {
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .info {
+      span {
+        color: $G-color-gray-medium;
+      }
+
+      .contour {
+        margin: 0 10px;
+        color: $G-color-gray-light;
+      }
+    }
+
+    .more {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 16px;
+    }
+  }
+
+  .viewContent {
+    padding: 16px 16px 32px;
+
+    .text {
+      min-height: 200px;
+      p {
+        line-height: 22px;
+      }
+      img:first-of-type {
+        margin: 0 0 20px;
+      }
+
+      img {
+        margin: 20px 0;
+      }
+    }
+
+    .hashList {
+      margin-top: 40px;
+    }
+  }
+}

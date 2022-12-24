@@ -1,6 +1,6 @@
 import {GetServerSideProps, NextPage} from "next";
 import {useCallback} from "react";
-import MobileRoot from "../../components/mobile/Root";
+import MobileBoard from "../../components/mobile/Board";
 import PCBoard from "../../components/pc/Board";
 import Head from "next/head";
 import {wrapper} from "../../store";
@@ -22,7 +22,7 @@ const QaView: NextPage<IProps> = () => {
     : ''
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoard />
+    return isMobile ? <MobileBoard /> : <PCBoard />
   }, []);
 
   return (
@@ -31,11 +31,9 @@ const QaView: NextPage<IProps> = () => {
         <title>{ headTitle }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        {
-          handleDeviceDetect(isMobile)
-        }
-      </div>
+      {
+        handleDeviceDetect(isMobile)
+      }
     </>
   );
 };

@@ -1,11 +1,15 @@
-import styles from "./Comment.module.scss";
+import styles from "./Commnet.module.scss";
+import React, {useCallback, useState} from "react";
 import Image from "next/image";
 import Member from "../../../common/Member";
 import Button from "../../../common/Button";
 import CommentSendForm from "../CommentSendForm";
-import React, {useCallback, useState} from "react";
 
-export default function Comment({ comment }: { comment: any }) {
+interface CommentProps {
+  comment: any;
+}
+
+export default function Comment({ comment }: CommentProps) {
   const [replyForm, setReplyForm] = useState(false);
 
   const showReplyForm = useCallback(() => {

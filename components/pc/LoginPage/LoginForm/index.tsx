@@ -4,12 +4,18 @@ import useInput from "../../../../hooks/useInput";
 import Button from "../../../common/Button";
 import Link from "next/link";
 import {getCookies} from "cookies-next";
-import {useCallback} from "react";
-import {useDispatch} from "react-redux";
+import {useCallback, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {memberLogin} from "../../../../store/slices/userSlice";
 import {AppDispatch} from "../../../../store";
+import {RootState} from "../../../../store/reducers";
+import {useRouter} from "next/router";
 
 export default function LoginForm() {
+  const router = useRouter();
+
+  const { memberLoginError, memberLoginDone } = useSelector((state: RootState) => state.user);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const [id, onChangeId] = useInput('');
@@ -24,6 +30,12 @@ export default function LoginForm() {
   //     session: session || ''
   //   }));
   // }, [id, password]);
+
+  useEffect(() => {
+    if (memberLoginDone) {
+      router.push("/")
+    }
+  }, [memberLoginDone]);
 
   return (
     <div className={styles.wrapper}>
@@ -50,6 +62,9 @@ export default function LoginForm() {
           value={password}
           onChange={onChangePassword}
         />
+      </div>
+      <div className={styles.error}>
+        {memberLoginError && <p>{memberLoginError as string}</p>}
       </div>
       <div className={styles.forgot}>
         <Link href="/forgot">

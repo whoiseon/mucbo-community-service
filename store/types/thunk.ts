@@ -30,3 +30,7 @@ export interface MemberLoginParams {
   password: string,
   session: string,
 }
+
+export interface  GetLoadMyInfoParams {
+  session: string
+}

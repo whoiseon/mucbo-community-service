@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.comment {
+  border-top: 1px solid $G-color-border-table-bold;
+
+  .commentHeader {
+    padding: 16px;
+
+    span {
+      font-size: $G-font-size-h5;
+      font-weight: 600;
+    }
+
+    .count {
+      margin-left: 6px;
+      font-size: $G-font-size-h5;
+      font-weight: 400;
+      color: $G-color-main;
+    }
+  }
+}

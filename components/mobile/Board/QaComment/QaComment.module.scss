@@ -1,0 +1,142 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-top: 6px solid $G-background-color-default;
+
+  .comment {
+    .commentInfo {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid $G-color-border-table-bold;
+
+      .thumb {
+        margin-right: 10px;
+      }
+
+      .userInfo {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+
+        button {
+          margin-bottom: 6px;
+          & > span {
+            font-weight: 400;
+          }
+        }
+
+        p {
+          font-size: $G-font-size-h7;
+          color: $G-color-gray-medium;
+        }
+      }
+    }
+
+    .commentContent {
+      padding: 16px 16px 32px;
+      p {
+        line-height: 22px;
+      }
+    }
+
+    .replyBtn {
+      margin: 0 0 16px 6px;
+
+      button {
+        padding: 6px 10px;
+        font-size: 12px;
+        font-weight: 500;
+        color: $G-color-gray-medium;
+      }
+    }
+
+    .replyForm {
+      padding: 0 16px 16px;
+      & > aside {
+        border: none;
+      }
+    }
+  }
+
+  .reply {
+    background-color: #FAFAFA;
+    border-radius: 0 0 6px 6px;
+
+    .replyComment {
+      padding: 16px 16px 16px 50px;
+      border-top: 1px solid $G-color-border-table-bold;
+
+      &:not(:first-of-type) {
+        border-bottom: 1px solid $G-color-border-table-bold;
+      }
+
+      .replyIcon {
+        position: absolute;
+        z-index: 9999;
+        opacity: 0.1;
+        left: 16px
+      }
+
+      .replyCommentInfo {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .thumb {
+          margin-right: 10px;
+        }
+
+        .userInfo {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+
+          button {
+            margin-bottom: 6px;
+            & > span {
+              font-weight: 400;
+            }
+          }
+
+          p {
+            font-size: $G-font-size-h7;
+            color: $G-color-gray-medium;
+          }
+        }
+      }
+
+      .replyCommentContent {
+        padding-bottom: 10px;
+        p {
+          line-height: 22px;
+        }
+      }
+    }
+  }
+}
+
+.selection {
+  position: relative;
+  border-top: 1px solid $G-color-main;
+  border-bottom: 1px solid $G-color-main;
+
+  .selectionIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    padding: 6px 0;
+    z-index: 9999;
+    border-radius: 0 0 0 6px;
+    text-align: center;
+    font-weight: 600;
+    color: $G-color-white-extra;
+    background-color: $G-color-main;
+  }
+}
