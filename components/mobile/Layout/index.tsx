@@ -2,12 +2,14 @@ import styles from "./Layout.module.scss";
 import GlobalHeader from "./GlobalHeader";
 import FooterNav from "./FooterNav";
 import {useCallback, useEffect, useRef, useState} from "react";
+import {useRouter} from "next/router";
 
 interface LayoutProps {
   children: JSX.Element;
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const router = useRouter();
   const MainRef = useRef<any>(null);
 
   const [scroll, setScroll] = useState(0);
@@ -30,6 +32,10 @@ export default function Layout({ children }: LayoutProps) {
       MainRef.current?.removeEventListener("scroll", onScrollMain);
     }
   });
+
+  useEffect(() => {
+    MainRef.current.scrollTop = 0;
+  }, [router.asPath]);
 
   return (
     <>
