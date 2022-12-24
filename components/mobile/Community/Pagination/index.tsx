@@ -2,7 +2,6 @@ import styles from "./Pagination.module.scss";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {Dispatch, SetStateAction, useCallback, useEffect, useState} from "react";
-import ScrollToTop from "../../../common/ScrollToTop";
 
 interface PaginationProps {
   totalPage: number | undefined,
