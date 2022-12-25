@@ -37,7 +37,7 @@ export default function Community() {
 
     return (
       <div className={styles.wrapper}>
-        <ListBoard />
+        <ListBoard data={posts} />
         <Pagination totalPage={totalPage} limit={5} page={page} setPage={setPage} />
       </div>
     )

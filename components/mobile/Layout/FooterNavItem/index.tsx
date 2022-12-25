@@ -17,9 +17,11 @@ interface FooterNavItemProps {
 export default function FooterNavItem({ name, path, board, icon, nowMenu, setNowMenu, setConfigModal }: FooterNavItemProps) {
   const router = useRouter();
 
+  const isBoard = router.asPath.split('/')[1]
+
   const isActive =
-    nowMenu === name && router.asPath.split('/')[1] !== 'customer'
-      && router.asPath.split('/')[1] !== 'login'
+    nowMenu === name && isBoard !== 'customer'
+      && isBoard !== 'login' && isBoard !== 'user'
       ? styles.active
       : '';
 

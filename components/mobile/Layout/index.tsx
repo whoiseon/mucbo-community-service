@@ -31,10 +31,12 @@ export default function Layout({ children }: LayoutProps) {
 
   const handleWhiteHeaderTitle = useCallback((path: string) => {
     switch (path) {
-      case "/login":
+      case "login":
         return "로그인"
-      case "/signup":
+      case "signup":
         return "회원가입"
+      case "user":
+        return "유저 정보"
       default:
         return ""
     }
@@ -55,12 +57,12 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       {
-        !(router.pathname === '/login' || router.pathname === '/signup')
+        !(router.pathname === '/login' || router.pathname === '/signup' || router.pathname.split('/')[1] === 'user')
           ? (
             <GlobalHeader scrollActive={scrollActive} />
           )
           : (
-            <WhiteHeader title={handleWhiteHeaderTitle(router.pathname)} />
+            <WhiteHeader title={handleWhiteHeaderTitle(router.pathname.split('/')[1])} />
           )
       }
       <main ref={MainRef} className={styles.main}>

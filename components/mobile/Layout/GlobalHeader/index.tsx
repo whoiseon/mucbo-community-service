@@ -2,7 +2,6 @@ import styles from "./GlobalHeader.module.scss";
 import {headerMenus} from "../../../../data/menus";
 import {useRouter} from "next/router";
 import Link from "next/link";
-import {useEffect} from "react";
 
 interface GlobalHeaderProps {
   scrollActive: boolean

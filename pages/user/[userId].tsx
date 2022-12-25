@@ -5,6 +5,7 @@ import {isMobile} from "react-device-detect";
 import {getViewUserInfo, getViewUserWriteData} from "../../store/slices/postSlice";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
+import MobileBoardByUser from "../../components/mobile/BoardByUser";
 import PCBoardByUser from "../../components/pc/BoardByUser";
 import Head from "next/head";
 import {useSelector} from "react-redux";
@@ -18,7 +19,7 @@ const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
   const { viewUserInfo } = useSelector((state: RootState) => state.post);
 
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoardByUser />
+    return isMobile ? <MobileBoardByUser /> : <PCBoardByUser />
   }, []);
 
   return (
@@ -27,11 +28,9 @@ const UserId: NextPage<IProps> = ({ isMobile }: IProps) => {
         <title>{ viewUserInfo?.message.result.mb_nick }</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        {
-          handleDeviceDetect(isMobile)
-        }
-      </div>
+      {
+        handleDeviceDetect(isMobile)
+      }
     </>
   );
 };

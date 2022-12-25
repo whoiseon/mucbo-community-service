@@ -5,8 +5,13 @@ import Link from "next/link";
 import styles from "./ListBoard.module.scss";
 import {useRouter} from "next/router";
 import React, {useCallback} from "react";
+import {BoardType, ViewUserWriteDataType} from "../../../../types/board";
 
-export default function ListBoard() {
+interface ListTableProps {
+  data: BoardType | ViewUserWriteDataType | null
+}
+
+export default function ListBoard({ data }: ListTableProps) {
   const router = useRouter();
 
   const { posts } = useSelector((state: RootState) => state.post);
@@ -33,7 +38,7 @@ export default function ListBoard() {
   return (
     <div className={styles.wrapper}>
       {
-        posts?.message.result.list.map((post: any, i: number) => {
+        data?.message.result.list.map((post: any, i: number) => {
           const isNoticeStyle = post?.is_notice ? `${styles.noticeArticle}` : ''
 
           return (
