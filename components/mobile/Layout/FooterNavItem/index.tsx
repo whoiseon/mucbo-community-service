@@ -17,16 +17,20 @@ interface FooterNavItemProps {
 export default function FooterNavItem({ name, path, board, icon, nowMenu, setNowMenu, setConfigModal }: FooterNavItemProps) {
   const router = useRouter();
 
-  const isActive = nowMenu === name ? styles.active : '';
+  const isActive =
+    nowMenu === name && router.asPath.split('/')[1] !== 'customer'
+      && router.asPath.split('/')[1] !== 'login'
+      ? styles.active
+      : '';
 
-  const onClickMenu = (e: any) => {
-    setNowMenu(e.target.textContent);
+  const onClickMenu = (name: string) => () => {
+    setNowMenu(name);
     setConfigModal(false);
   };
 
   return (
     <Link href={path}>
-      <a className={`${styles.wrapper} ${isActive}`} onClick={onClickMenu}>
+      <a className={`${styles.wrapper} ${isActive}`} onClick={onClickMenu(name)}>
         <div className={styles.icon}>
           <Image
             src={icon}
