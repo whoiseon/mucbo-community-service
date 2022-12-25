@@ -10,7 +10,7 @@ const makeStore = () => {
   return configureStore({
     reducer: rootReducer as Reducer<ReducerStates, AnyAction>,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
-    devTools: !isProduction
+    devTools: false
   });
 }
 
