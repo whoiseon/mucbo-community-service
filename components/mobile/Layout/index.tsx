@@ -3,6 +3,7 @@ import GlobalHeader from "./GlobalHeader";
 import FooterNav from "./FooterNav";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
+import ConfigModal from "./ConfigModal";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -11,6 +12,8 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
   const MainRef = useRef<any>(null);
+
+  const [configModal, setConfigModal] = useState(false);
 
   const [scroll, setScroll] = useState(0);
   const [scrollActive, setScrollActive] = useState(false);
@@ -43,7 +46,8 @@ export default function Layout({ children }: LayoutProps) {
       <main ref={MainRef} className={styles.main}>
         { children }
       </main>
-      <FooterNav />
+      <ConfigModal configModal={configModal} setConfigModal={setConfigModal} />
+      <FooterNav configModal={configModal} setConfigModal={setConfigModal} />
     </>
   );
 };
