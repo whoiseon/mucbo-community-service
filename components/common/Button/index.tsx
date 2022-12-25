@@ -9,9 +9,10 @@ interface ButtonProps {
   type: string;
   onClick?: () => void;
   afterImg?: string;
+  disabled?: boolean
 }
 
-export default function Button({ path, children, type, onClick, afterImg }: ButtonProps) {
+export default function Button({ path, children, type, onClick, afterImg, disabled }: ButtonProps) {
   const handleTypeToButtonStyle = useCallback((type: string) => {
     switch (type) {
       case "primary":
@@ -44,6 +45,7 @@ export default function Button({ path, children, type, onClick, afterImg }: Butt
         type="button"
         className={handleTypeToButtonStyle(type)}
         onClick={onClick && onClick}
+        disabled={disabled}
       >
         {
           afterImg && <Image src={afterImg} alt="img" width={14} height={14} />

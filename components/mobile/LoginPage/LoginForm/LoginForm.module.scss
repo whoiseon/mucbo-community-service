@@ -1,0 +1,45 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  .inputWrapper {
+    position: relative;
+    margin-bottom: 16px;
+
+    p {
+      margin-bottom: 10px;
+      color: $G-color-black-semi;
+    }
+
+    input:focus {
+      border: 1px solid $G-color-main;
+      box-shadow: $G-box-shadow-base;
+    }
+  }
+
+  .buttonWrapper {
+    button {
+      margin: 32px 0;
+    }
+  }
+
+  .signUp {
+    display: flex;
+    justify-content: center;
+    color: $G-color-black-semi;
+
+    span {
+      margin-right: 6px;
+    }
+
+    a {
+      color: $G-color-main;
+      text-decoration: underline;
+
+      &:hover {
+        color: $G-color-main-hover;
+      }
+    }
+  }
+}

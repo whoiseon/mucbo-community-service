@@ -4,7 +4,8 @@ import {isMobile} from "react-device-detect";
 import {useCallback} from "react";
 import MobileRoot from "../../components/mobile/Root";
 import Head from "next/head";
-import LoginPage from "../../components/pc/LoginPage";
+import PCLoginPage from "../../components/pc/LoginPage";
+import MobileLoginPage from "../../components/mobile/LoginPage";
 
 interface IProps {
   isMobile: boolean,
@@ -12,7 +13,7 @@ interface IProps {
 
 const Login: NextPage<IProps> = ({ isMobile }) => {
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <LoginPage />
+    return isMobile ? <MobileLoginPage /> : <PCLoginPage />
   }, []);
 
   return (

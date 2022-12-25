@@ -4,6 +4,7 @@ import FooterNav from "./FooterNav";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import ConfigModal from "./ConfigModal";
+import WhiteHeader from "./WhiteHeader";
 
 interface LayoutProps {
   children: JSX.Element;
@@ -28,6 +29,17 @@ export default function Layout({ children }: LayoutProps) {
     }
   }, [scroll]);
 
+  const handleWhiteHeaderTitle = useCallback((path: string) => {
+    switch (path) {
+      case "/login":
+        return "로그인"
+      case "/signup":
+        return "회원가입"
+      default:
+        return ""
+    }
+  }, []);
+
   useEffect(() => {
     MainRef.current?.addEventListener("scroll", onScrollMain);
 
@@ -42,12 +54,24 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
-      <GlobalHeader scrollActive={scrollActive} />
+      {
+        !(router.pathname === '/login' || router.pathname === '/signup')
+          ? (
+            <GlobalHeader scrollActive={scrollActive} />
+          )
+          : (
+            <WhiteHeader title={handleWhiteHeaderTitle(router.pathname)} />
+          )
+      }
       <main ref={MainRef} className={styles.main}>
         { children }
       </main>
       <ConfigModal configModal={configModal} setConfigModal={setConfigModal} />
-      <FooterNav configModal={configModal} setConfigModal={setConfigModal} />
+      {
+        !(router.pathname === '/signup') && (
+          <FooterNav configModal={configModal} setConfigModal={setConfigModal} />
+        )
+      }
     </>
   );
 };

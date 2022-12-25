@@ -1,0 +1,48 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.wrapper {
+  padding: 46px 16px 16px;
+  width: 100%;
+  height: 100%;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+
+    .logo {
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: $G-font-size-h3;
+    }
+  }
+
+  .loginLineBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 32px;
+    opacity: 0.6;
+
+    .line {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      top: 8px;
+      background-color: $G-color-gray-medium;
+    }
+
+    .lineText {
+      padding: 0 8px;
+      background-color: white;
+      color: $G-color-gray-medium;
+      z-index: 999;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@charset "UTF-8";
+@import "../../../../styles/common/variables";
+@import '../../../../styles/common/placeholders';
+
+.wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 46px;
+  background-color: $G-color-white-extra;
+  color: $G-color-black-medium;
+  z-index: 100;
+  border-bottom: 1px solid $G-color-border-table-bold;
+
+  h2 {
+    font-size: $G-font-size-h5;
+  }
+
+  .close {
+    position: absolute;
+    right: 0;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      opacity: 0.5;
+    }
+  }
+}
