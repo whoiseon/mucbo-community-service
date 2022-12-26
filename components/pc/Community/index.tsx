@@ -109,7 +109,7 @@ export default function Community() {
                     <Button
                       type="primary"
                       afterImg="/image/icon/write-icon.svg"
-                      path={`${router.asPath}/write`}
+                      path={`${router.asPath.split('?')[0]}/write`}
                     >
                       글쓰기
                     </Button>

@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import "../../../styles/common/variables";
+@import '../../../styles/common/placeholders';
+
+.wrapper {
+  .writeInputWrapper {
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid $G-color-border-table-bold;
+      padding: 16px;
+      font-size: $G-font-size-h5;
+    }
+  }
+
+  .writeSend {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 62px;
+    height: 46px;
+    opacity: 0.5;
+    color: $G-color-main;
+    font-weight: bold;
+    z-index: 999;
+  }
+  .writeArea {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100%;
+    flex: 1 1;
+  }
+}

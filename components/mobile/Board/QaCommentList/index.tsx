@@ -43,7 +43,6 @@ export default function QaCommentList() {
       <section className={styles.commentList}>
         {
           viewData?.comment_list?.map((comment: any, i: number) => {
-            console.log(comment);
             return (
               <QaComment key={comment.comment_id} comment={comment} />
             )

@@ -3,8 +3,8 @@ import {wrapper} from "../../../../store";
 import MobileDetect from "mobile-detect";
 import {isMobile} from "react-device-detect";
 import {useCallback} from "react";
-import MobileRoot from "../../../../components/mobile/Root";
-import PCBoard from "../../../../components/pc/WritePage";
+import MobileWrite from "../../../../components/mobile/WritePage";
+import PCWrite from "../../../../components/pc/WritePage";
 import Head from "next/head";
 
 interface IProps {
@@ -13,7 +13,7 @@ interface IProps {
 
 const Write: NextPage<IProps> = ({ isMobile }) => {
   const handleDeviceDetect = useCallback((isMobile: boolean) => {
-    return isMobile ? <MobileRoot /> : <PCBoard />
+    return isMobile ? <MobileWrite /> : <PCWrite />
   }, []);
 
   return (

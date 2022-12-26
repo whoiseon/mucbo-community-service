@@ -20,6 +20,20 @@
     font-size: $G-font-size-h5;
   }
 
+  .prev {
+    position: absolute;
+    left: 0;
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      transform: rotate(180deg);
+    }
+  }
+
   .close {
     position: absolute;
     right: 0;

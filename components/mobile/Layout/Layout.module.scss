@@ -50,3 +50,22 @@
   overflow: hidden scroll;
   padding: 46px 0 66px;
 }
+
+.write {
+  position: absolute;
+  bottom: 82px;
+  right: 16px;
+  z-index: 999;
+  transition: bottom .3s ease;
+
+  .icon {
+    background-color: $G-color-main;
+    padding: 16px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.writeActive {
+  bottom: 0;
+}

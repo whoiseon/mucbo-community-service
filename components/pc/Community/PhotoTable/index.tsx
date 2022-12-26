@@ -25,7 +25,7 @@ export default function PhotoTable() {
               </Link>
               <div className={styles.info}>
                 <div className={styles.title}>
-                  <Link href={`${router.asPath}/${list.wr_id}`}>
+                  <Link href={`${router.asPath.split('?')[0]}/${list.wr_id}`}>
                     <a>
                       <span>{list.subject}</span>
                     </a>

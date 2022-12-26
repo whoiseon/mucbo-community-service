@@ -71,7 +71,7 @@ export default function ListTable({ data }: ListTableProps) {
                         </Link>
                       )
                       : (
-                        <Link href={`${router.asPath}/${post.wr_id}`}>
+                        <Link href={`${router.asPath.split('?')[0]}/${post.wr_id}`}>
                           {post.subject}
                         </Link>
                       )

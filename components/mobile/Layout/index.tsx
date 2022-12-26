@@ -1,7 +1,11 @@
+import {useCallback, useEffect, useRef, useState} from "react";
+import Link from "next/link";
+import Image from "next/image";
+
 import styles from "./Layout.module.scss";
+
 import GlobalHeader from "./GlobalHeader";
 import FooterNav from "./FooterNav";
-import {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import ConfigModal from "./ConfigModal";
 import WhiteHeader from "./WhiteHeader";
@@ -13,6 +17,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
   const MainRef = useRef<any>(null);
+  const WriteRef = useRef<any>(null);
 
   const [configModal, setConfigModal] = useState(false);
 
@@ -38,15 +43,17 @@ export default function Layout({ children }: LayoutProps) {
       case "user":
         return "유저 정보"
       default:
-        return ""
+        return "글쓰기"
     }
   }, []);
 
   useEffect(() => {
     MainRef.current?.addEventListener("scroll", onScrollMain);
+    WriteRef.current?.addEventListener("scroll", onScrollMain);
 
     return () => {
       MainRef.current?.removeEventListener("scroll", onScrollMain);
+      WriteRef.current?.removeEventListener("scroll", onScrollMain);
     }
   });
 
@@ -54,23 +61,49 @@ export default function Layout({ children }: LayoutProps) {
     MainRef.current.scrollTop = 0;
   }, [router.asPath]);
 
+  const isBoard = router.asPath.split('/')[1];
+  const isWritePage = router.asPath.includes("write");
+  const hideAndShowWriteButton = scrollActive ? styles.writeActive : "";
+
   return (
     <>
       {
-        !(router.pathname === '/login' || router.pathname === '/signup' || router.pathname.split('/')[1] === 'user')
+        !(isBoard === 'login' || isBoard === 'signup' || isBoard === 'user' || isWritePage)
           ? (
             <GlobalHeader scrollActive={scrollActive} />
           )
           : (
-            <WhiteHeader title={handleWhiteHeaderTitle(router.pathname.split('/')[1])} />
+            <WhiteHeader title={handleWhiteHeaderTitle(isBoard)} isWritePage={isWritePage} />
           )
       }
-      <main ref={MainRef} className={styles.main}>
+      <main
+        ref={MainRef}
+        className={styles.main}
+        style={isWritePage ? { paddingBottom: '0' } : {}}
+      >
         { children }
       </main>
+      {
+        ((isBoard === 'community' || isBoard === 'games' || isBoard === 'qa') && !router.query.id && !isWritePage) && (
+          <div ref={WriteRef} className={`${styles.write} ${hideAndShowWriteButton}`}>
+            <Link href={`${router.asPath.split("?")[0]}/write`}>
+              <a>
+                <div className={styles.icon}>
+                  <Image
+                    src="/image/icon/write-icon.svg"
+                    alt="write"
+                    width={24}
+                    height={24}
+                  />
+                </div>
+              </a>
+            </Link>
+          </div>
+        )
+      }
       <ConfigModal configModal={configModal} setConfigModal={setConfigModal} />
       {
-        !(router.pathname === '/signup') && (
+        !(router.pathname === '/signup' || isWritePage) && (
           <FooterNav configModal={configModal} setConfigModal={setConfigModal} />
         )
       }

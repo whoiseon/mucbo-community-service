@@ -20,7 +20,7 @@ export default function PhotoBoard() {
           photoData?.map((post: any, i) => {
             return (
               <li key={post.wr_id}>
-                <Link href={`${router.asPath}/${post.wr_id}`}>
+                <Link href={`${router.asPath.split('?')[0]}/${post.wr_id}`}>
                   <a>
                     <img src={post?.thumb?.src} alt={post?.thumb?.alt} />
                   </a>

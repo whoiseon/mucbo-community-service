@@ -23,7 +23,7 @@ export default function QaBoard() {
               <Link href={
                 router.query.board === 'board' && router.query.table === 'all' || isUserInfoPage
                   ? `/${post.gr_id}/${post.bo_table}/${post.wr_id}`
-                  : `${router.asPath}/${post.wr_id}`
+                  : `${router.asPath.split('?')[0]}/${post.wr_id}`
               }>
                 <a>
                   <div className={styles.listLeft}>
