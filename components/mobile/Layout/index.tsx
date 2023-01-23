@@ -92,8 +92,8 @@ export default function Layout({ children }: LayoutProps) {
                   <Image
                     src="/image/icon/write-icon.svg"
                     alt="write"
-                    width={24}
-                    height={24}
+                    width={22}
+                    height={22}
                   />
                 </div>
               </a>
